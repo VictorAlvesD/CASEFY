@@ -61,7 +61,7 @@ public class CapinhaResourceTest {
     @Transactional
     public void testInsert() {
         CapinhaDTO dtoCapinha = new CapinhaDTO(
-            null,
+            1L,
             Cor.AMARELO,
             "Nome teste",
             BigDecimal.valueOf(25.00),

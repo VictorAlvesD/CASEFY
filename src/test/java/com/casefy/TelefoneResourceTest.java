@@ -97,12 +97,7 @@ public class TelefoneResourceTest {
 
     @Test
     public void testRemoveTelefone() {
-        TelefoneDTO dto = new TelefoneDTO(
-                "62",
-                "984398131");
-
-        TelefoneResponseDTO administradorInserido = administradorService.insert(dto);
-        Long idTelefone = administradorInserido.id();
+        Long idTelefone = 1L;
 
         given()
                 .header("Authorization", "Bearer " + token)
@@ -114,13 +109,7 @@ public class TelefoneResourceTest {
 
     @Test
     public void testFindById() {
-        TelefoneDTO dto = new TelefoneDTO(
-                "99",
-                "984759685");
-
-        // Inserindo um usuário
-        TelefoneResponseDTO usuarioTest = administradorService.insert(dto);
-        Long id = usuarioTest.id();
+        Long id = 1L;
 
         given()
                 .header("Authorization", "Bearer " + token)

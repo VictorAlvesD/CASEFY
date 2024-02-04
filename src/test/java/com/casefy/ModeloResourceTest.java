@@ -6,23 +6,42 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.casefy.dto.Login.LoginDTO;
 import com.casefy.dto.Modelo.*;
 import com.casefy.service.Modelo.ModeloService;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import jakarta.inject.Inject;
 
 @QuarkusTest
 public class ModeloResourceTest {
     @Inject
     ModeloService modeloService;
+ private String token;
 
+    @BeforeEach
+    public void setUp() {
+        var auth = new LoginDTO("victor@unitins.br", "123");
+
+        Response response = (Response) given()
+                .contentType("application/json")
+                .body(auth)
+                .when().post("/auth")
+                .then()
+                .statusCode(200)
+                .extract().response();
+
+        token = response.header("Authorization");
+    }
     @Test
     public void testFindAll() {
         given()
+        .header("Authorization", "Bearer " + token)
             .when().get("/modelos")
             .then()
             .statusCode(200);
@@ -36,6 +55,7 @@ public class ModeloResourceTest {
         );
 
         given()
+        .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoModelo)
                 .when().post("/modelos")
@@ -63,6 +83,7 @@ public class ModeloResourceTest {
         );
 
         given()
+        .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoModeloUpdate)
                 .when().put("/modelos/" + id)
@@ -86,12 +107,14 @@ public class ModeloResourceTest {
         Long idModelo = modeloInserido.id();
 
         given()
+        .header("Authorization", "Bearer " + token)
             .when()
             .delete("/modelos/" + idModelo)
             .then()
             .statusCode(204);
 
         given()
+        .header("Authorization", "Bearer " + token)
             .when()
             .get("/modelos/" + idModelo)
             .then()
@@ -109,6 +132,7 @@ public class ModeloResourceTest {
         Long id = modeloTest.id();
 
         given()
+        .header("Authorization", "Bearer " + token)
             .when().get("/modelos/{id}", id)
             .then()
             .statusCode(200)
@@ -120,6 +144,7 @@ public class ModeloResourceTest {
         Long NotExistingId = 9999L;
 
         given()
+        .header("Authorization", "Bearer " + token)
             .when().get("/modelos/{id}", NotExistingId)
             .then()
             .statusCode(404);
