@@ -9,16 +9,16 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.ItemVendaDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.dto.PedidoDTO;
-import com.casefy.dto.PedidoResponseDTO;
-import com.casefy.service.CapinhaService;
-import com.casefy.service.CidadeService;
-import com.casefy.service.ClienteService;
-import com.casefy.service.EnderecoService;
-import com.casefy.service.EstadoService;
-import com.casefy.service.PedidoService;
+import com.casefy.dto.ItemVenda.ItemVendaDTO;
+import com.casefy.dto.Login.LoginDTO;
+import com.casefy.dto.Pedido.*;
+
+import com.casefy.service.Capa.CapinhaService;
+import com.casefy.service.Cidade.CidadeService;
+import com.casefy.service.Cliente.ClienteService;
+import com.casefy.service.Endereco.EnderecoService;
+import com.casefy.service.Estado.EstadoService;
+import com.casefy.service.Pedido.PedidoService;
 
 import static org.hamcrest.Matchers.*;
 

@@ -3,9 +3,8 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.EstadoDTO;
-import com.casefy.dto.EstadoResponseDTO;
-import com.casefy.service.EstadoService;
+import com.casefy.dto.Estado.*;
+import com.casefy.service.Estado.EstadoService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

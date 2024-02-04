@@ -1,11 +1,10 @@
-package com.casefy.service;
+package com.casefy.service.CartaoCredito;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.CartaoCreditoDTO;
-import com.casefy.dto.CartaoCreditoResponseDTO;
+import com.casefy.dto.CartaoCredito.*;
 import com.casefy.model.CartaoCredito;
 import com.casefy.repository.CartaoCreditoRepository;
 

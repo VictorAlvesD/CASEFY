@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Modelo;
 
 import java.util.List;
 
-import com.casefy.dto.ModeloDTO;
-import com.casefy.dto.ModeloResponseDTO;
+import com.casefy.dto.Modelo.*;
 import com.casefy.model.Modelo;
 import com.casefy.repository.ModeloRepository;
 

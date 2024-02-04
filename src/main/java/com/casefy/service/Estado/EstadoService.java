@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Estado;
 
 import java.util.List;
 
-import com.casefy.dto.EstadoDTO;
-import com.casefy.dto.EstadoResponseDTO;
+import com.casefy.dto.Estado.*;
 
 public interface EstadoService {
     public EstadoResponseDTO insert(EstadoDTO dto);

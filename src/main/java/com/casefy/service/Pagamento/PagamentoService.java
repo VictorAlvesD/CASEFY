@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Pagamento;
 
 import java.util.List;
 
-import com.casefy.dto.PagamentoDTO;
-import com.casefy.dto.PagamentoResponseDTO;
+import com.casefy.dto.Pagamento.*;
 
 public interface PagamentoService {
     public PagamentoResponseDTO insert(PagamentoDTO dto, String login);

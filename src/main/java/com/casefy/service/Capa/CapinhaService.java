@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Capa;
 
 import java.util.List;
 
-import com.casefy.dto.CapinhaDTO;
-import com.casefy.dto.CapinhaResponseDTO;
+import com.casefy.dto.Capa.*;
 
 public interface CapinhaService {
     public CapinhaResponseDTO insert(CapinhaDTO dto);

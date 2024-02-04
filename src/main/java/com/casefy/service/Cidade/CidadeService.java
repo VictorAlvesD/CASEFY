@@ -1,7 +1,6 @@
-package com.casefy.service;
+package com.casefy.service.Cidade;
 
-import com.casefy.dto.CidadeDTO;
-import com.casefy.dto.CidadeResponseDTO;
+import com.casefy.dto.Cidade.*;
 import java.util.List;
 
 public interface CidadeService {

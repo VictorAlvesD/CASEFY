@@ -4,9 +4,8 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.PagamentoDTO;
-import com.casefy.dto.PagamentoResponseDTO;
-import com.casefy.service.PagamentoService;
+import com.casefy.dto.Pagamento.*;
+import com.casefy.service.Pagamento.PagamentoService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

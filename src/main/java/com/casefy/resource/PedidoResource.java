@@ -5,10 +5,9 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.PedidoDTO;
-import com.casefy.dto.PedidoResponseDTO;
-import com.casefy.service.PedidoService;
-import com.casefy.service.UsuarioService;
+import com.casefy.dto.Pedido.*;
+import com.casefy.service.Pedido.PedidoService;
+import com.casefy.service.Usuario.UsuarioService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

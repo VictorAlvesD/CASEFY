@@ -4,9 +4,8 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.BoletoBancarioDTO;
-import com.casefy.dto.BoletoBancarioResponseDTO;
-import com.casefy.service.BoletoBancarioService;
+import com.casefy.dto.BoletoBancario.*;
+import com.casefy.service.BoletoBancario.BoletoBancarioService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

@@ -8,10 +8,9 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.CartaoCreditoDTO;
-import com.casefy.dto.CartaoCreditoResponseDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.service.CartaoCreditoService;
+import com.casefy.dto.CartaoCredito.*;
+import com.casefy.dto.Login.LoginDTO;
+import com.casefy.service.CartaoCredito.CartaoCreditoService;
 
 import static org.hamcrest.Matchers.*;
 

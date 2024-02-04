@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Cidade;
 
 import java.util.List;
 
-import com.casefy.dto.CidadeDTO;
-import com.casefy.dto.CidadeResponseDTO;
+import com.casefy.dto.Cidade.*;
 import com.casefy.model.Cidade;
 import com.casefy.repository.CidadeRepository;
 import com.casefy.repository.EstadoRepository;

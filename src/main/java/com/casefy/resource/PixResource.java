@@ -4,9 +4,8 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.PixDTO;
-import com.casefy.dto.PixResponseDTO;
-import com.casefy.service.PixService;
+import com.casefy.dto.Pix.*;
+import com.casefy.service.Pix.PixService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

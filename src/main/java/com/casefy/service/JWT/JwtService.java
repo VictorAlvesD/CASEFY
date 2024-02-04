@@ -1,6 +1,6 @@
-package com.casefy.service;
+package com.casefy.service.JWT;
 
-import com.casefy.dto.UsuarioResponseDTO;
+import com.casefy.dto.Usuario.*;
 
 public interface JwtService {
 

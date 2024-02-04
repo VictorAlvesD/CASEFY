@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.CartaoCredito;
 
 import java.util.List;
 
-import com.casefy.dto.CartaoCreditoDTO;
-import com.casefy.dto.CartaoCreditoResponseDTO;
+import com.casefy.dto.CartaoCredito.*;
 
 public interface CartaoCreditoService {
     public CartaoCreditoResponseDTO insert(CartaoCreditoDTO dto);

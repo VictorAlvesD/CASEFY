@@ -6,10 +6,9 @@ import jakarta.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.BoletoBancarioDTO;
-import com.casefy.dto.BoletoBancarioResponseDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.service.BoletoBancarioService;
+import com.casefy.dto.BoletoBancario.*;
+import com.casefy.dto.Login.LoginDTO;
+import com.casefy.service.BoletoBancario.BoletoBancarioService;
 
 import static org.hamcrest.Matchers.*;
 

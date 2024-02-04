@@ -1,11 +1,10 @@
-package com.casefy.service;
+package com.casefy.service.Estado;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.EstadoDTO;
-import com.casefy.dto.EstadoResponseDTO;
+import com.casefy.dto.Estado.*;
 import com.casefy.model.Estado;
 import com.casefy.repository.EstadoRepository;
 

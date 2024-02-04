@@ -1,4 +1,4 @@
-package com.casefy.service;
+package com.casefy.service.Hash;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;

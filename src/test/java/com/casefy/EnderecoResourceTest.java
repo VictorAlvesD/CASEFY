@@ -8,14 +8,14 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.CidadeDTO;
-import com.casefy.dto.EnderecoDTO;
-import com.casefy.dto.EnderecoResponseDTO;
-import com.casefy.dto.EstadoDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.service.CidadeService;
-import com.casefy.service.EnderecoService;
-import com.casefy.service.EstadoService;
+import com.casefy.dto.Cidade.*;
+import com.casefy.dto.Endereco.*;
+import com.casefy.dto.Estado.*;
+import com.casefy.dto.Login.LoginDTO;
+
+import com.casefy.service.Cidade.CidadeService;
+import com.casefy.service.Endereco.EnderecoService;
+import com.casefy.service.Estado.EstadoService;
 
 import static org.hamcrest.Matchers.*;
 

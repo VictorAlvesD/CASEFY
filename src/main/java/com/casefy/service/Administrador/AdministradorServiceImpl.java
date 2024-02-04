@@ -1,9 +1,9 @@
-package com.casefy.service;
+package com.casefy.service.Administrador;
 
 import java.util.List;
 
-import com.casefy.dto.AdministradorDTO;
-import com.casefy.dto.AdministradorResponseDTO;
+import com.casefy.dto.Administrador.AdministradorDTO;
+import com.casefy.dto.Administrador.AdministradorResponseDTO;
 import com.casefy.model.Administrador;
 import com.casefy.model.Perfil;
 import com.casefy.repository.AdministradorRepository;

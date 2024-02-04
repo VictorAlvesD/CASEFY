@@ -1,9 +1,9 @@
-package com.casefy.service;
+package com.casefy.service.BoletoBancario;
 
 import java.util.List;
 
-import com.casefy.dto.BoletoBancarioDTO;
-import com.casefy.dto.BoletoBancarioResponseDTO;
+import com.casefy.dto.BoletoBancario.*;
+
 
 public interface BoletoBancarioService {
     public BoletoBancarioResponseDTO insert(BoletoBancarioDTO dto);

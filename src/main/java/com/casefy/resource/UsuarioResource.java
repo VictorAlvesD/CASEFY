@@ -3,9 +3,8 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.UsuarioDTO;
-import com.casefy.dto.UsuarioResponseDTO;
-import com.casefy.service.UsuarioService;
+import com.casefy.dto.Usuario.*;
+import com.casefy.service.Usuario.UsuarioService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityNotFoundException;

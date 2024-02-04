@@ -1,11 +1,11 @@
 package com.casefy.resource;
 
 import org.jboss.logging.Logger;
-import com.casefy.dto.LoginDTO;
-import com.casefy.dto.UsuarioResponseDTO;
-import com.casefy.service.HashService;
-import com.casefy.service.JwtService;
-import com.casefy.service.UsuarioService;
+import com.casefy.dto.Login.*;
+import com.casefy.dto.Usuario.*;
+import com.casefy.service.Hash.HashService;
+import com.casefy.service.JWT.*;
+import com.casefy.service.Usuario.*;
 
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;

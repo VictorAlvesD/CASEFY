@@ -3,7 +3,6 @@ package com.casefy.dto.Capa;
 import java.math.BigDecimal;
 
 import com.casefy.model.Capinha;
-import com.casefy.model.Modelo;
 import com.casefy.model.Cor;
 
 import com.casefy.dto.Modelo.*;

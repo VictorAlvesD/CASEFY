@@ -1,11 +1,11 @@
-package com.casefy.service;
+package com.casefy.service.JWT;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.casefy.dto.UsuarioResponseDTO;
+import com.casefy.dto.Usuario.*;
 
 import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;

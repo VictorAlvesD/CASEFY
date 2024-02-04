@@ -3,9 +3,8 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.EnderecoDTO;
-import com.casefy.dto.EnderecoResponseDTO;
-import com.casefy.service.EnderecoService;
+import com.casefy.dto.Endereco.*;
+import com.casefy.service.Endereco.EnderecoService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

@@ -8,13 +8,13 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.BoletoBancarioDTO;
-import com.casefy.dto.CartaoCreditoDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.dto.PagamentoDTO;
-import com.casefy.dto.PagamentoResponseDTO;
-import com.casefy.dto.PixDTO;
-import com.casefy.service.PagamentoService;
+import com.casefy.dto.BoletoBancario.*;
+import com.casefy.dto.CartaoCredito.*;
+import com.casefy.dto.Login.*;
+import com.casefy.dto.Pagamento.*;
+import com.casefy.dto.Pix.*;
+
+import com.casefy.service.Pagamento.PagamentoService;
 
 import static org.hamcrest.Matchers.*;
 

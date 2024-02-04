@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Endereco;
 
 import java.util.List;
 
-import com.casefy.dto.EnderecoDTO;
-import com.casefy.dto.EnderecoResponseDTO;
+import com.casefy.dto.Endereco.*;
 
 public interface EnderecoService {
 

@@ -3,9 +3,8 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.TelefoneDTO;
-import com.casefy.dto.TelefoneResponseDTO;
-import com.casefy.service.TelefoneService;
+import com.casefy.dto.Telefone.*;
+import com.casefy.service.Telefone.TelefoneService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

@@ -11,11 +11,10 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.CapinhaDTO;
-import com.casefy.dto.CapinhaResponseDTO;
-import com.casefy.dto.LoginDTO;
+import com.casefy.dto.Capa.*;
+import com.casefy.dto.Login.LoginDTO;
 import com.casefy.model.Cor;
-import com.casefy.service.CapinhaService;
+import com.casefy.service.Capa.CapinhaService;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;

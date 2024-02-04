@@ -20,17 +20,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.casefy.dto.CidadeDTO;
-import com.casefy.dto.ClienteDTO;
-import com.casefy.dto.ClienteResponseDTO;
-import com.casefy.dto.EnderecoDTO;
-import com.casefy.dto.EstadoDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.dto.TelefoneDTO;
-import com.casefy.service.CidadeService;
-import com.casefy.service.ClienteService;
-import com.casefy.service.EnderecoService;
-import com.casefy.service.EstadoService;
+import com.casefy.dto.Cidade.*;
+import com.casefy.dto.Cliente.*;
+import com.casefy.dto.Endereco.*;
+import com.casefy.dto.Estado.*;
+import com.casefy.dto.Login.*;
+import com.casefy.dto.Telefone.*;
+
+import com.casefy.service.Cidade.CidadeService;
+import com.casefy.service.Cliente.ClienteService;
+import com.casefy.service.Endereco.EnderecoService;
+import com.casefy.service.Estado.EstadoService;
 
 @QuarkusTest
 public class ClienteResourceTest {

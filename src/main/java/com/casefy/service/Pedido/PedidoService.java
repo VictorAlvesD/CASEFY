@@ -1,10 +1,9 @@
-package com.casefy.service;
+package com.casefy.service.Pedido;
 
 import java.util.List;
 
-import com.casefy.dto.ItemVendaResponseDTO;
-import com.casefy.dto.PedidoDTO;
-import com.casefy.dto.PedidoResponseDTO;
+import com.casefy.dto.ItemVenda.*;
+import com.casefy.dto.Pedido.*;
 import com.casefy.model.Cliente;
 
 public interface PedidoService {

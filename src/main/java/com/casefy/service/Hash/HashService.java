@@ -1,4 +1,4 @@
-package com.casefy.service;
+package com.casefy.service.Hash;
 
 public interface HashService {
 

@@ -1,14 +1,12 @@
-package com.casefy.service;
+package com.casefy.service.Pedido;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.ItemVendaDTO;
-import com.casefy.dto.ItemVendaResponseDTO;
-import com.casefy.dto.PedidoDTO;
-import com.casefy.dto.PedidoResponseDTO;
+import com.casefy.dto.ItemVenda.*;
+import com.casefy.dto.Pedido.*;
 import com.casefy.model.Capinha;
 import com.casefy.model.Cliente;
 import com.casefy.model.Endereco;

@@ -8,10 +8,9 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.LoginDTO;
-import com.casefy.dto.TelefoneDTO;
-import com.casefy.dto.TelefoneResponseDTO;
-import com.casefy.service.TelefoneService;
+import com.casefy.dto.Login.LoginDTO;
+import com.casefy.dto.Telefone.*;
+import com.casefy.service.Telefone.TelefoneService;
 
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.given;

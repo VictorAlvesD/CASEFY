@@ -6,10 +6,9 @@ import jakarta.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.AdministradorDTO;
-import com.casefy.dto.AdministradorResponseDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.service.AdministradorService;
+import com.casefy.dto.Administrador.*;
+import com.casefy.dto.Login.LoginDTO;
+import com.casefy.service.Administrador.AdministradorService;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;

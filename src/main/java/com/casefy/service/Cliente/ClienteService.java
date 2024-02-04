@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Cliente;
 
 import java.util.List;
 
-import com.casefy.dto.ClienteDTO;
-import com.casefy.dto.ClienteResponseDTO;
+import com.casefy.dto.Cliente.*;
 
 public interface ClienteService {
 

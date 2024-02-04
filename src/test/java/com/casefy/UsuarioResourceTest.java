@@ -7,10 +7,9 @@ import jakarta.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.UsuarioDTO;
-import com.casefy.dto.UsuarioResponseDTO;
-import com.casefy.dto.LoginDTO;
-import com.casefy.service.UsuarioService;
+import com.casefy.dto.Usuario.*;
+import com.casefy.dto.Login.LoginDTO;
+import com.casefy.service.Usuario.UsuarioService;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;

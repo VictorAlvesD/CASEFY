@@ -1,4 +1,4 @@
-package com.casefy.service;
+package com.casefy.service.Capa;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

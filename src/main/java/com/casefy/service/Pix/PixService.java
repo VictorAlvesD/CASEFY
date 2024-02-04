@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Pix;
 
 import java.util.List;
 
-import com.casefy.dto.PixDTO;
-import com.casefy.dto.PixResponseDTO;
+import com.casefy.dto.Pix.*;
 
 public interface PixService {
     public PixResponseDTO insert(PixDTO dto);

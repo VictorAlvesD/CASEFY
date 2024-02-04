@@ -1,9 +1,8 @@
-package com.casefy.service;
+package com.casefy.service.Telefone;
 
 import java.util.List;
 
-import com.casefy.dto.TelefoneDTO;
-import com.casefy.dto.TelefoneResponseDTO;
+import com.casefy.dto.Telefone.*;
 import com.casefy.model.Telefone;
 import com.casefy.repository.TelefoneRepository;
 

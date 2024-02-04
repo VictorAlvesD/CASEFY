@@ -7,12 +7,11 @@ import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import com.casefy.application.Result;
-import com.casefy.dto.CapinhaDTO;
-import com.casefy.dto.CapinhaResponseDTO;
+import com.casefy.dto.Capa.*;
 import com.casefy.form.CapinhaImageForm;
-import com.casefy.service.CapinhaService;
-import com.casefy.service.UsuarioService;
-import com.casefy.service.CapinhaFileService;
+import com.casefy.service.Capa.CapinhaService;
+import com.casefy.service.Capa.CapinhaFileService;
+import com.casefy.service.Usuario.*;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

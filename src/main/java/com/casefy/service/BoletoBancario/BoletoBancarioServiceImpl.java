@@ -1,11 +1,11 @@
-package com.casefy.service;
+package com.casefy.service.BoletoBancario;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.BoletoBancarioDTO;
-import com.casefy.dto.BoletoBancarioResponseDTO;
+import com.casefy.dto.BoletoBancario.BoletoBancarioDTO;
+import com.casefy.dto.BoletoBancario.BoletoBancarioResponseDTO;
 import com.casefy.model.BoletoBancario;
 import com.casefy.repository.BoletoBancarioRepository;
 
@@ -36,7 +36,7 @@ public class BoletoBancarioServiceImpl implements BoletoBancarioService {
 
         return BoletoBancarioResponseDTO.valueOf(novoBoletoBancario);
     }
-
+    
     @Override
     @Transactional
     public BoletoBancarioResponseDTO update(BoletoBancarioDTO dto, Long id) {

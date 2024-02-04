@@ -3,9 +3,8 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
-import com.casefy.dto.CartaoCreditoDTO;
-import com.casefy.dto.CartaoCreditoResponseDTO;
-import com.casefy.service.CartaoCreditoService;
+import com.casefy.dto.CartaoCredito.*;
+import com.casefy.service.CartaoCredito.CartaoCreditoService;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

@@ -1,14 +1,14 @@
-package com.casefy.service;
+package com.casefy.service.Pagamento;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.BoletoBancarioDTO;
-import com.casefy.dto.CartaoCreditoDTO;
-import com.casefy.dto.PagamentoDTO;
-import com.casefy.dto.PagamentoResponseDTO;
-import com.casefy.dto.PixDTO;
+import com.casefy.dto.Pagamento.*;
+import com.casefy.dto.Pix.*;
+import com.casefy.dto.BoletoBancario.*;
+import com.casefy.dto.CartaoCredito.*;
+
 import com.casefy.model.BoletoBancario;
 import com.casefy.model.CartaoCredito;
 import com.casefy.model.Cliente;
@@ -16,6 +16,7 @@ import com.casefy.model.Pagamento;
 import com.casefy.model.Pedido;
 import com.casefy.model.Pix;
 import com.casefy.model.StatusPagamento;
+
 import com.casefy.repository.ClienteRepository;
 import com.casefy.repository.PagamentoRepository;
 import com.casefy.repository.PedidoRepository;

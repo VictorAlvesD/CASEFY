@@ -1,10 +1,9 @@
-package com.casefy.service;
+package com.casefy.service.Pix;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.PixDTO;
-import com.casefy.dto.PixResponseDTO;
+import com.casefy.dto.Pix.*;
 import com.casefy.model.Pix;
 import com.casefy.repository.PixRepository;
 

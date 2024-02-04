@@ -1,11 +1,10 @@
-package com.casefy.service;
+package com.casefy.service.Cliente;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.ClienteDTO;
-import com.casefy.dto.ClienteResponseDTO;
+import com.casefy.dto.Cliente.*;
 import com.casefy.model.Cidade;
 import com.casefy.model.Cliente;
 import com.casefy.model.Endereco;
