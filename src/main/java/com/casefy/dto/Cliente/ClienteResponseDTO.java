@@ -1,7 +1,8 @@
-package com.casefy.dto;
+package com.casefy.dto.Cliente;
 
 import java.util.List;
 
+import com.casefy.dto.Telefone.TelefoneDTO;
 import com.casefy.model.Cliente;
 
 public record ClienteResponseDTO(

@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.Endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

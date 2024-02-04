@@ -1,7 +1,9 @@
-package com.casefy.dto;
+package com.casefy.dto.Pagamento;
 
 import java.util.List;
-
+import com.casefy.dto.Pix.*;
+import com.casefy.dto.BoletoBancario.*;
+import com.casefy.dto.CartaoCredito.*;
 import jakarta.validation.constraints.NotBlank;
 
 public record PagamentoDTO(

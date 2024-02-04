@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.Estado;
 
 import com.casefy.model.Estado;
 

@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.Cidade;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

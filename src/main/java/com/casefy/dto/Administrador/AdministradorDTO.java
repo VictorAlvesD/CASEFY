@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.Administrador;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

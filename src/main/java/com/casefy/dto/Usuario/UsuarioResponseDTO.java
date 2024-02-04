@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.Usuario;
 
 import com.casefy.model.Usuario;
 import com.casefy.model.Perfil;

@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.ItemVenda;
 
 import jakarta.validation.constraints.NotNull;
 

@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.CartaoCredito;
 
 import com.casefy.model.CartaoCredito;
 

@@ -1,8 +1,11 @@
-package com.casefy.dto;
+package com.casefy.dto.Pedido;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.casefy.dto.Cliente.ClienteResponseDTO;
+import com.casefy.dto.Endereco.EnderecoResponseDTO;
+import com.casefy.dto.ItemVenda.ItemVendaResponseDTO;
 import com.casefy.model.Pedido;
 
 public record PedidoResponseDTO(

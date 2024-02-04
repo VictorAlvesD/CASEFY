@@ -1,7 +1,10 @@
-package com.casefy.dto;
+package com.casefy.dto.Cliente;
 
 import java.util.Date;
 import java.util.List;
+
+import com.casefy.dto.Endereco.*;
+import com.casefy.dto.Telefone.*;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

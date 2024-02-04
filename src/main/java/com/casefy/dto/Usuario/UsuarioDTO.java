@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.Usuario;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

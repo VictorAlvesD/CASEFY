@@ -1,7 +1,7 @@
-package com.casefy.dto;
+package com.casefy.dto.Pedido;
 
 import java.util.List;
-
+import com.casefy.dto.ItemVenda.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

@@ -1,4 +1,4 @@
-package com.casefy.dto;
+package com.casefy.dto.Endereco;
 
 import com.casefy.model.Cidade;
 import com.casefy.model.Endereco;
