@@ -34,7 +34,6 @@ public class AdministradorResource {
     private static final Logger LOG = Logger.getLogger(ClienteResource.class);
 
     @POST
-    @RolesAllowed({ "Admin" })
     public Response insert(@Valid AdministradorDTO dto) {
 
         LOG.debug("Debug de inserção de administradores.");
@@ -52,7 +51,6 @@ public class AdministradorResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response update(AdministradorDTO dto, @PathParam("id") Long id) {
         
         try {
@@ -69,7 +67,6 @@ public class AdministradorResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response delete(@PathParam("id") Long id) {
         
         try {
@@ -84,7 +81,6 @@ public class AdministradorResource {
     }
 
     @GET
-    @RolesAllowed({ "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os administradores.");
         LOG.debug("Debug de busca de lista de administradores.");
@@ -93,7 +89,6 @@ public class AdministradorResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             AdministradorResponseDTO administrador = service.findById(id);
@@ -108,12 +103,21 @@ public class AdministradorResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    @RolesAllowed({ "Admin" })
     public Response findByNome(@PathParam("nome") String nome) {
         try {
-            LOG.info("Buscando um cliente por ID.");
             LOG.debug("Debug de busca de ID de administradores.");
            return Response.ok(service.findByNome(nome)).build();
+         } catch (EntityNotFoundException e) {
+            LOG.info("Erro ao buscar um cliente por ID.");
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+    }
+    @GET
+    @Path("/search/matricula/{matricula}")
+    public Response findByNome(@PathParam("matricula") Integer matricula) {
+        try {
+            LOG.debug("Debug de busca de ID de administradores.");
+           return Response.ok(service.findByMatricula(matricula)).build();
          } catch (EntityNotFoundException e) {
             LOG.info("Erro ao buscar um cliente por ID.");
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();

@@ -75,6 +75,16 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
+    public AdministradorResponseDTO findByMatricula(Integer matricula) {
+        Administrador administrador = repository.findByMatricula(matricula);
+        if (administrador != null) {
+            return AdministradorResponseDTO.valueOf(administrador);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public List<AdministradorResponseDTO> findByAll() {
         return repository.listAll().stream()
                 .map(e -> AdministradorResponseDTO.valueOf(e)).toList();

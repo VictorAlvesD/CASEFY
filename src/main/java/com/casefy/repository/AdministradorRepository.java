@@ -12,4 +12,7 @@ public class AdministradorRepository implements PanacheRepository<Administrador>
     public List<Administrador> findByNome(String nome) {
         return find("UPPER(nome) LIKE UPPER(?1) ", "%"+nome+"%").list();
     }
+    public Administrador findByMatricula(Integer matricula) {
+        return find("matricula = ?1", matricula).firstResult();
+    }
 }

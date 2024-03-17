@@ -18,6 +18,8 @@ public interface AdministradorService {
 
     public List<AdministradorResponseDTO> findByNome(String nome);
 
+    public AdministradorResponseDTO findByMatricula(Integer matricula);
+
     public List<AdministradorResponseDTO> findByAll(); 
     
 }
