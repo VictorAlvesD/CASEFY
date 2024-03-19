@@ -1,12 +1,12 @@
 
 -- Administrador
-insert into administrador ( nome, login, senha, cpf, matricula, perfil) 
-values( 'Victor Alves', 'victor@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '753.369.654-98', 159, 2);
-insert into administrador ( nome, login, senha, cpf, matricula, perfil) 
-values( 'Aline barros', 'alineb@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '023.396.147-08', 111, 2);
-insert into administrador ( nome, login, senha, cpf, matricula, perfil) 
-values( 'Gloria Groover', 'gg@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '063.369.688-05', 257, 2);
-
+insert into administrador ( id, nome, login, senha, cpf, matricula, perfil) 
+values( 1, 'Victor Alves', 'victor@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '753.369.654-98', 159, 2);
+insert into administrador ( id, nome, login, senha, cpf, matricula, perfil) 
+values( 2, 'Aline barros', 'alineb@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '023.396.147-08', 111, 2);
+insert into administrador ( id, nome, login, senha, cpf, matricula, perfil) 
+values( 3, 'Gloria Groover', 'gg@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '063.369.688-05', 257, 2);
+/*
 -- Telefones
 insert into telefone ( codArea, numero) values( '63', '98478-3692');
 insert into telefone ( codArea, numero) values( '62', '99999-9688');
@@ -118,3 +118,4 @@ insert into capinha ( nome, descricao, valor, quantEstoque, modelo_id, cor)
 values( 'Capinha de titânio ', 'Uma capinha de celular', 45.0, 5, 4, 'TRANSPARENTE');
 insert into capinha ( nome, descricao, valor, quantEstoque, modelo_id, cor)
 values( 'Capinha de Glitter ', 'Uma capinha de celular', 45.0, 5, 1, 'LARANJA');
+*/

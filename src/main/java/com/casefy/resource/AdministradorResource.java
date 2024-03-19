@@ -1,8 +1,8 @@
 package com.casefy.resource;
 
 import org.jboss.logging.Logger;
-
 import com.casefy.application.Result;
+import com.casefy.model.*;
 import com.casefy.dto.Administrador.*;
 import com.casefy.service.Administrador.AdministradorService;
 
@@ -112,15 +112,5 @@ public class AdministradorResource {
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }
-    @GET
-    @Path("/search/matricula/{matricula}")
-    public Response findByNome(@PathParam("matricula") Integer matricula) {
-        try {
-            LOG.debug("Debug de busca de ID de administradores.");
-           return Response.ok(service.findByMatricula(matricula)).build();
-         } catch (EntityNotFoundException e) {
-            LOG.info("Erro ao buscar um cliente por ID.");
-            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
-        }
-    }
+    
 }

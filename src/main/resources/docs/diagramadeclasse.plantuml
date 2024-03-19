@@ -1,0 +1,156 @@
+@startuml
+class CaseProtetora {
+    - id: Long
+    - modelo: Modelo
+    - cor: Cor
+    - valor: Integer
+    - descrição: String
+    - fornecedor: String
+}
+
+class Estoque{
+    - id: Long
+    - quantidade: Integer
+}
+
+class ModeloCelular {
+    - id: Long
+    - nome: String
+}
+
+class Marca{
+    - id: Long
+    - nome: String
+}
+
+ENUM Cor {
+    - id: Long
+    - nome: String
+}
+
+class ItemVenda {
+    - id: Long
+    - livro: Livro
+    - quantidade: Integer
+    - valorUnitario: float
+    - valorTotal: float
+}
+
+class Venda{
+    - id: Long
+    - cliente: Cliente
+    - valorTotal: float
+    - desconto: float
+}
+
+class Pagamento {
+    - id: Long
+    - tipo: String
+    - valor: float
+}
+
+class CartaoDeCredito {
+    - id: Long
+    - numeroCartao: String
+    - dataValidade: LocalDate
+    - codigoSeguranca: String
+    - bandeira: String
+}
+
+class BoletoBancario {
+    - id: Long
+    - banco: String
+    - numeroBoleto: String
+    - dataVencimento: LocalDate
+}
+
+class Pix {
+    - id: Long
+    - chavePix: String
+}
+
+class Usuario {
+    - id: Long
+    - nome: String
+    - dataNascimento: Date
+    - email: String
+    - senha: String
+    - cpf: String
+}
+
+class Cliente {
+    - id: Long
+}
+
+class Administrador {
+    - id: Long
+    - matricula: Integer
+    - nivesAScesso: Integer
+}
+
+class Endereco {
+    - id: Long
+    - logradouro: String
+    - numero: String
+    - complemento: String
+    - bairro: String
+    - cep: String
+}
+
+class Cidade{
+    - id: Long
+    - nome: String
+}
+
+class Telefone{
+    - id: Long
+    - codArea: String
+    - numero: String
+}
+
+class Estado {
+    - id: Long
+    - nome: String
+    - sigla: String
+}
+
+
+Usuario "1" <|-- "*" Cliente
+
+Cliente "1" o--> "*" Endereco
+
+Cliente "1" o--> "*" Telefone
+
+Endereco "*" --> "1" Cidade
+
+Cidade "1" --> "1" Estado
+
+
+Usuario "1" <|-- "*" Administrador
+
+
+ItemVenda "1" o--> "1" CaseProtetora
+
+
+CaseProtetora "1" o--> "*" ModeloCelular
+
+CaseProtetora "*" *--> "1" Cor
+
+CaseProtetora "1" o--> "1" Estoque
+
+Pagamento "1" o--> "*" CartaoDeCredito
+
+Pagamento "1" o--> "*" BoletoBancario
+
+Pagamento "1" o--> "*" Pix
+
+Cliente "1" -- "0..*" Venda
+
+Venda"*" o--> "1" Endereco
+
+Venda"1" o--> "*" ItemVenda
+
+Venda"1" o--> "1" Pagamento
+
+Marca "1" o--> "*" ModeloCelular
+@enduml
