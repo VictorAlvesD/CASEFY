@@ -15,4 +15,5 @@ public class AdministradorRepository implements PanacheRepository<Administrador>
     public Administrador findByMatricula(Integer matricula) {
         return find("matricula = ?1", matricula).firstResult();
     }
+    
 }
