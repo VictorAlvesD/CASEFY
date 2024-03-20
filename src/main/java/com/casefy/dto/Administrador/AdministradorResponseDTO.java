@@ -1,6 +1,7 @@
 package com.casefy.dto.Administrador;
 
 import com.casefy.model.Administrador;
+import com.casefy.model.NivelAcesso;
 
 public record AdministradorResponseDTO(
         Long id,
@@ -9,7 +10,8 @@ public record AdministradorResponseDTO(
         String email,
         String cpf,
         String perfil,
-        String senha) {
+        String senha,
+        NivelAcesso idNivelAcesso) {
     public static AdministradorResponseDTO valueOf(Administrador adm) {
         return new AdministradorResponseDTO(
                 adm.getId(),
@@ -18,7 +20,8 @@ public record AdministradorResponseDTO(
                 adm.getEmail(),
                 adm.getCpf(),
                 adm.getPerfil().getLabel(),
-                adm.getSenha()
+                adm.getSenha(),
+                adm.getNivelAcesso()
                 );
     }
 }

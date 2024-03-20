@@ -39,7 +39,6 @@ public class ClienteServiceImpl implements ClienteService {
         // Crie um novo cliente
         Cliente novoCliente = new Cliente();
         novoCliente.setNome(dto.nome());
-        novoCliente.setCpf(dto.cpf());
         novoCliente.setLogin(dto.login());
         novoCliente.setSenha(dto.senha());
         novoCliente.setDataNascimento(dto.dataNascimento());
@@ -96,7 +95,6 @@ public class ClienteServiceImpl implements ClienteService {
 
         // Atualize os campos do cliente com base no DTO
         clienteExistente.setNome(dto.nome());
-        clienteExistente.setCpf(dto.cpf());
         clienteExistente.setLogin(dto.login());
         clienteExistente.setSenha(dto.senha());
         clienteExistente.setDataNascimento(dto.dataNascimento());

@@ -6,7 +6,6 @@ import com.casefy.model.Perfil;
 public record UsuarioResponseDTO(
     Long id,
     String nome,
-    String cpf,
     String login,
     Perfil perfil
 ) { 
@@ -14,7 +13,6 @@ public record UsuarioResponseDTO(
         return new UsuarioResponseDTO(
             usuario.getId(),
             usuario.getNome(),
-            usuario.getCpf(),
             usuario.getLogin(),
             usuario.getPerfil()
         );

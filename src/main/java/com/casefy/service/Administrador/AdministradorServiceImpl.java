@@ -5,6 +5,7 @@ import java.util.List;
 import com.casefy.dto.Administrador.AdministradorDTO;
 import com.casefy.dto.Administrador.AdministradorResponseDTO;
 import com.casefy.model.Administrador;
+import com.casefy.model.NivelAcesso;
 import com.casefy.model.Perfil;
 import com.casefy.repository.AdministradorRepository;
 
@@ -30,6 +31,7 @@ public class AdministradorServiceImpl implements AdministradorService {
         novoAdministrador.setSenha(dto.senha());
         novoAdministrador.setMatricula(dto.matricula());
         novoAdministrador.setPerfil(Perfil.ADMIN);
+        novoAdministrador.setNivelAcesso(NivelAcesso.valueOf(dto.idNivelAcesso()));
 
         repository.persist(novoAdministrador);
 
@@ -48,7 +50,10 @@ public class AdministradorServiceImpl implements AdministradorService {
         admExistente.setSenha(dto.senha());
         admExistente.setMatricula(dto.matricula());
         admExistente.setPerfil(Perfil.ADMIN);
+        admExistente.setNivelAcesso(NivelAcesso.valueOf(dto.idNivelAcesso()));
 
+        repository.persist(admExistente);
+        
         return AdministradorResponseDTO.valueOf(admExistente);
     }
 
