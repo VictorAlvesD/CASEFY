@@ -1,13 +1,12 @@
 package com.casefy.dto.Cidade;
 
 import com.casefy.model.Cidade;
-import com.casefy.model.Estado;
 
 public record CidadeResponseDTO(
         Long id,
         String nome,
-        Estado estado) {
+        String estado) {
     public static CidadeResponseDTO valueOf(Cidade cidade){
-        return new CidadeResponseDTO(cidade.getId(), cidade.getNome(), cidade.getEstado());
+        return new CidadeResponseDTO(cidade.getId(), cidade.getNome(), cidade.getEstado().getNome());
     }
 }
