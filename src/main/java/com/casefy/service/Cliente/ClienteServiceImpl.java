@@ -60,7 +60,7 @@ public class ClienteServiceImpl implements ClienteService {
             novoCliente.setTelefone(Collections.emptyList());
         }
 
-        //  Configure a lista de endereços
+        // Configure a lista de endereços
         if (dto.listaEndereco() != null && !dto.listaEndereco().isEmpty()) {
             List<Endereco> enderecos = dto.listaEndereco().stream()
                     .map(end -> {
@@ -72,8 +72,8 @@ public class ClienteServiceImpl implements ClienteService {
                         endereco.setComplemento(end.complemento());
 
                         Cidade cidade = new Cidade();
-                        cidade.setNome(end.Cidade().nome());
-                        cidade.setEstado(Estado.valueOf(end.Cidade().estado()));
+                        cidade.setNome(end.cidade().nome());
+                        cidade.setEstado(Estado.valueOf(end.cidade().estado().getId()));
 
                         endereco.setCidade(cidade);
 
@@ -84,7 +84,7 @@ public class ClienteServiceImpl implements ClienteService {
             novoCliente.setPerfil(Perfil.CLIENTE);
         } else {
             novoCliente.setEndereco(Collections.emptyList());
-        } 
+        }
 
         // Persista o novo cliente
         repository.persist(novoCliente);
@@ -132,10 +132,10 @@ public class ClienteServiceImpl implements ClienteService {
                         endereco.setNumero(end.numero());
                         endereco.setLogradouro(end.logradouro());
                         endereco.setComplemento(end.complemento());
-                        
+
                         Cidade cidade = new Cidade();
-                        cidade.setNome(end.Cidade().nome());
-                        cidade.setEstado(Estado.valueOf(end.Cidade().estado()));
+                        cidade.setNome(end.cidade().nome());
+                        cidade.setEstado(Estado.valueOf(end.cidade().estado().getId()));
 
                         endereco.setCidade(cidade);
 
@@ -145,7 +145,7 @@ public class ClienteServiceImpl implements ClienteService {
             clienteExistente.getEndereco().addAll(enderecos);
         } else {
             clienteExistente.getEndereco().clear();
-        } 
+        }
 
         return ClienteResponseDTO.valueOf(clienteExistente);
     }

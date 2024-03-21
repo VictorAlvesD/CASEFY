@@ -24,7 +24,6 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Inject
     CidadeRepository cidaderepository;
 
-
     @Override
     @Transactional
     public EnderecoResponseDTO insert(EnderecoDTO dto) {
@@ -36,11 +35,13 @@ public class EnderecoServiceImpl implements EnderecoService {
         novoEndereco.setComplemento(dto.complemento());
 
         Cidade cidade = new Cidade();
-        cidade.setNome(dto.Cidade().nome());
-        cidade.setEstado(Estado.valueOf(dto.Cidade().estado()));
-        
+        cidade.setNome(dto.cidade().nome());
+        cidade.setEstado(Estado.valueOf(dto.cidade().estado().getId()));
+
+        novoEndereco.setCidade(cidade);
 
         repository.persist(novoEndereco);
+
         return EnderecoResponseDTO.valueOf(novoEndereco);
     }
 
@@ -54,12 +55,15 @@ public class EnderecoServiceImpl implements EnderecoService {
         updEndereco.setLogradouro(dto.logradouro());
         updEndereco.setNumero(dto.numero());
         updEndereco.setComplemento(dto.complemento());
-        
+
         Cidade cidade = new Cidade();
-        cidade.setNome(dto.Cidade().nome());
-        cidade.setEstado(Estado.valueOf(dto.Cidade().estado()));
+        cidade.setNome(dto.cidade().nome());
+        cidade.setEstado(Estado.valueOf(dto.cidade().estado().getId()));
+
+        updEndereco.setCidade(cidade);
 
         repository.persist(updEndereco);
+
         return EnderecoResponseDTO.valueOf(updEndereco);
     }
 

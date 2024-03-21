@@ -8,13 +8,16 @@ public record EnderecoResponseDTO(
         String numero,
         String complemento,
         String cep,
-        Cidade cidade) {
+        String nomeCidade,
+        String estado) {
+
     public static EnderecoResponseDTO valueOf(Endereco endereco) {
+        Cidade cidade = endereco.getCidade();
         return new EnderecoResponseDTO(
                 endereco.getId(),
                 endereco.getNumero(),
                 endereco.getComplemento(),
                 endereco.getCep(),
-                endereco.getCidade());
-    }
+                cidade.getNome(),
+                cidade.getEstado().getSigla()); }
 }

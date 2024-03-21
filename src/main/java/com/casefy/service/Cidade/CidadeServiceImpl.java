@@ -26,7 +26,7 @@ public class CidadeServiceImpl implements CidadeService {
     public CidadeResponseDTO insert(CidadeDTO dto) {
         Cidade novoCidade = new Cidade();
         novoCidade.setNome(dto.nome());
-        novoCidade.setEstado(Estado.valueOf(dto.estado()));
+        novoCidade.setEstado(Estado.valueOf(dto.estado().getId()));
 
         repository.persist(novoCidade);
 
@@ -42,7 +42,7 @@ public class CidadeServiceImpl implements CidadeService {
             throw new EntityNotFoundException("Cidade com ID " + id + " não encontrada");
         }
         cidadeExistente.setNome(dto.nome());
-        cidadeExistente.setEstado(Estado.valueOf(dto.estado()));
+        cidadeExistente.setEstado(Estado.valueOf(dto.estado().getId()));
         
         repository.persist(cidadeExistente);
         return CidadeResponseDTO.valueOf(cidadeExistente);
