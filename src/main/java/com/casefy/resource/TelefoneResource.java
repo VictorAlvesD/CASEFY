@@ -33,7 +33,6 @@ public class TelefoneResource {
     private static final Logger LOG = Logger.getLogger(TelefoneResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
     public Response insert(TelefoneDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Telefone.");
         try {
@@ -51,7 +50,6 @@ public class TelefoneResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response update(TelefoneDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Telefone");
@@ -68,7 +66,6 @@ public class TelefoneResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Telefone");
@@ -83,7 +80,6 @@ public class TelefoneResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Telefone.");
         LOG.debug("Debug de busca de lista de Telefone.");
@@ -92,7 +88,6 @@ public class TelefoneResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             TelefoneResponseDTO a = service.findById(id);
@@ -107,7 +102,6 @@ public class TelefoneResource {
 
     @GET
     @Path("/search/numero/{numero}")
-    @RolesAllowed({   "Admin" })
     public Response findByNome(@PathParam("numero") String numero) {
         try {
             LOG.info("Buscando Telefone pelo numero.");

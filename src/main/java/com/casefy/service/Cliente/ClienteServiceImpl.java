@@ -41,6 +41,7 @@ public class ClienteServiceImpl implements ClienteService {
         novoCliente.setNome(dto.nome());
         novoCliente.setLogin(dto.login());
         novoCliente.setSenha(dto.senha());
+        novoCliente.setCpf(dto.cpf());
         novoCliente.setDataNascimento(dto.dataNascimento());
 
         // Configure a lista de telefones
@@ -97,6 +98,7 @@ public class ClienteServiceImpl implements ClienteService {
         clienteExistente.setNome(dto.nome());
         clienteExistente.setLogin(dto.login());
         clienteExistente.setSenha(dto.senha());
+        clienteExistente.setCpf(dto.cpf());
         clienteExistente.setDataNascimento(dto.dataNascimento());
 
         // Atualize a lista de telefones

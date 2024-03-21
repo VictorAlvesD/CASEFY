@@ -33,7 +33,6 @@ public class CidadeResource {
     private static final Logger LOG = Logger.getLogger(CidadeResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
     public Response insert(CidadeDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Cidade.");
         try {
@@ -51,7 +50,6 @@ public class CidadeResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response update(CidadeDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Cidade");
@@ -68,7 +66,6 @@ public class CidadeResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Cidade");
@@ -83,7 +80,6 @@ public class CidadeResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Cidade.");
         LOG.debug("Debug de busca de lista de Cidade.");
@@ -92,7 +88,6 @@ public class CidadeResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             CidadeResponseDTO a = service.findById(id);
@@ -107,7 +102,6 @@ public class CidadeResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    @RolesAllowed({   "Admin" })
     public Response findByNome(@PathParam("nome") String nome) {
         try {
             LOG.info("Buscando Cidade pelo nome.");

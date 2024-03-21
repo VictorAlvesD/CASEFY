@@ -32,7 +32,6 @@ public class EstadoResource {
     private static final Logger LOG = Logger.getLogger(EstadoResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
     public Response insert(EstadoDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Estado.");
         try {
@@ -50,7 +49,6 @@ public class EstadoResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response update(EstadoDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Estado");
@@ -67,7 +65,6 @@ public class EstadoResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Estado");
@@ -82,7 +79,6 @@ public class EstadoResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Estado.");
         LOG.debug("Debug de busca de lista de Estado.");
@@ -91,7 +87,6 @@ public class EstadoResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             EstadoResponseDTO a = service.findById(id);
@@ -106,7 +101,6 @@ public class EstadoResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    @RolesAllowed({   "Admin" })
     public Response findByNome(@PathParam("nome") String cep) {
         try {
             LOG.info("Buscando Estado pelo nome.");
