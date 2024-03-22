@@ -8,6 +8,7 @@ import com.casefy.dto.Cliente.*;
 import com.casefy.model.Cidade;
 import com.casefy.model.Cliente;
 import com.casefy.model.Endereco;
+import com.casefy.model.Estado;
 import com.casefy.model.Perfil;
 import com.casefy.model.Telefone;
 import com.casefy.repository.CidadeRepository;
@@ -39,9 +40,9 @@ public class ClienteServiceImpl implements ClienteService {
         // Crie um novo cliente
         Cliente novoCliente = new Cliente();
         novoCliente.setNome(dto.nome());
-        novoCliente.setCpf(dto.cpf());
         novoCliente.setLogin(dto.login());
         novoCliente.setSenha(dto.senha());
+        novoCliente.setCpf(dto.cpf());
         novoCliente.setDataNascimento(dto.dataNascimento());
 
         // Configure a lista de telefones
@@ -59,7 +60,7 @@ public class ClienteServiceImpl implements ClienteService {
             novoCliente.setTelefone(Collections.emptyList());
         }
 
-        //  Configure a lista de endereços
+        // Configure a lista de endereços
         if (dto.listaEndereco() != null && !dto.listaEndereco().isEmpty()) {
             List<Endereco> enderecos = dto.listaEndereco().stream()
                     .map(end -> {
@@ -70,8 +71,11 @@ public class ClienteServiceImpl implements ClienteService {
                         endereco.setLogradouro(end.logradouro());
                         endereco.setComplemento(end.complemento());
 
-                        Cidade idCidade = cidadeRepository.findById(end.idCidade());
-                        endereco.setCidade(idCidade);
+                        Cidade cidade = new Cidade();
+                        cidade.setNome(end.cidade().nome());
+                        cidade.setEstado(Estado.valueOf(end.cidade().estado().getId()));
+
+                        endereco.setCidade(cidade);
 
                         return endereco;
                     })
@@ -80,7 +84,7 @@ public class ClienteServiceImpl implements ClienteService {
             novoCliente.setPerfil(Perfil.CLIENTE);
         } else {
             novoCliente.setEndereco(Collections.emptyList());
-        } 
+        }
 
         // Persista o novo cliente
         repository.persist(novoCliente);
@@ -96,9 +100,9 @@ public class ClienteServiceImpl implements ClienteService {
 
         // Atualize os campos do cliente com base no DTO
         clienteExistente.setNome(dto.nome());
-        clienteExistente.setCpf(dto.cpf());
         clienteExistente.setLogin(dto.login());
         clienteExistente.setSenha(dto.senha());
+        clienteExistente.setCpf(dto.cpf());
         clienteExistente.setDataNascimento(dto.dataNascimento());
 
         // Atualize a lista de telefones
@@ -128,8 +132,12 @@ public class ClienteServiceImpl implements ClienteService {
                         endereco.setNumero(end.numero());
                         endereco.setLogradouro(end.logradouro());
                         endereco.setComplemento(end.complemento());
-                        Cidade idCidade = cidadeRepository.findById(end.idCidade());
-                        endereco.setCidade(idCidade);
+
+                        Cidade cidade = new Cidade();
+                        cidade.setNome(end.cidade().nome());
+                        cidade.setEstado(Estado.valueOf(end.cidade().estado().getId()));
+
+                        endereco.setCidade(cidade);
 
                         return endereco;
                     })
@@ -137,7 +145,7 @@ public class ClienteServiceImpl implements ClienteService {
             clienteExistente.getEndereco().addAll(enderecos);
         } else {
             clienteExistente.getEndereco().clear();
-        } 
+        }
 
         return ClienteResponseDTO.valueOf(clienteExistente);
     }

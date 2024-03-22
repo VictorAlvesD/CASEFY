@@ -34,7 +34,6 @@ public class ClienteResource {
     private static final Logger LOG = Logger.getLogger(ClienteResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
     public Response insert(ClienteDTO dto) throws Exception {
         LOG.debug("Debug de inserção de clientes.");
         try {
@@ -51,7 +50,6 @@ public class ClienteResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response update(ClienteDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando cliente");
@@ -67,7 +65,6 @@ public class ClienteResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o cliente");
@@ -81,7 +78,6 @@ public class ClienteResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os clientes.");
         LOG.debug("Debug de busca de lista de clientes.");
@@ -90,7 +86,6 @@ public class ClienteResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             ClienteResponseDTO a = service.findById(id);
@@ -105,7 +100,6 @@ public class ClienteResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    @RolesAllowed({   "Admin" })
     public Response findByNome(@PathParam("nome") String nome) {
         try {
             LOG.info("Buscando um cliente por ID.");

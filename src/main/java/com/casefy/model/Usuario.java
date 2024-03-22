@@ -22,8 +22,7 @@ public class Usuario{
     @Email
     private String login;
     private String senha;
-    @Column(length = 16)
-    private String cpf;
+    
     private Perfil perfil;
 
     public String getLogin() {
@@ -63,13 +62,6 @@ public class Usuario{
 
     public void setId(Long id) {
         this.id = id;
-    }
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public Perfil getPerfil() {

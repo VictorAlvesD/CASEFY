@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.casefy.dto.Cidade.*;
 import com.casefy.model.Cidade;
+import com.casefy.model.Estado;
 import com.casefy.repository.CidadeRepository;
 import com.casefy.repository.EstadoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -25,7 +26,7 @@ public class CidadeServiceImpl implements CidadeService {
     public CidadeResponseDTO insert(CidadeDTO dto) {
         Cidade novoCidade = new Cidade();
         novoCidade.setNome(dto.nome());
-        novoCidade.setEstado(estadoRepository.findById(dto.idEstado()));
+        novoCidade.setEstado(Estado.valueOf(dto.estado().getId()));
 
         repository.persist(novoCidade);
 
@@ -41,7 +42,8 @@ public class CidadeServiceImpl implements CidadeService {
             throw new EntityNotFoundException("Cidade com ID " + id + " não encontrada");
         }
         cidadeExistente.setNome(dto.nome());
-        cidadeExistente.getEstado().setId(dto.idEstado());
+        cidadeExistente.setEstado(Estado.valueOf(dto.estado().getId()));
+        
         repository.persist(cidadeExistente);
         return CidadeResponseDTO.valueOf(cidadeExistente);
     }

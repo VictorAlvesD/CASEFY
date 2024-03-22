@@ -35,7 +35,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         novoUsuario.setNome(dto.nome());
         novoUsuario.setLogin(dto.login());
         novoUsuario.setSenha(dto.senha());
-        novoUsuario.setCpf(dto.cpf());
         novoUsuario.setPerfil(Perfil.valueOf(dto.idPerfil()));
 
         repository.persist(novoUsuario);
@@ -50,7 +49,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setLogin(dto.login());
         usuario.setNome(dto.nome());
         usuario.setSenha(dto.senha());
-        usuario.setCpf(dto.cpf());
         usuario.setPerfil(Perfil.valueOf(dto.idPerfil()));
 
         repository.persist(usuario);
@@ -118,7 +116,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public UsuarioResponseDTO updateCPF(String login, String cpf) {
         Usuario usuario = repository.findByLogin(login);
-        usuario.setCpf(cpf);
         repository.persist(usuario);
         return UsuarioResponseDTO.valueOf(usuario);
     }

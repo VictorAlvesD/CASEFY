@@ -1,4 +1,4 @@
-
+/*
 -- Administrador
 insert into administrador ( id, nome, login, senha, cpf, matricula, perfil) 
 values( 1, 'Victor Alves', 'victor@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '753.369.654-98', 159, 2);

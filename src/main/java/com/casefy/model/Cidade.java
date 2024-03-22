@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Cidade {
@@ -15,8 +13,7 @@ public class Cidade {
     private Long id;
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
-    @ManyToOne
-    @JoinColumn(name = "id_estado")
+
     private Estado estado;
 
     public Long getId() {

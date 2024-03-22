@@ -33,7 +33,6 @@ public class EnderecoResource {
     private static final Logger LOG = Logger.getLogger(EnderecoResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
     public Response insert(EnderecoDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Endereco.");
         try {
@@ -51,7 +50,6 @@ public class EnderecoResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response update(EnderecoDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Endereco");
@@ -68,7 +66,6 @@ public class EnderecoResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Endereco");
@@ -83,7 +80,6 @@ public class EnderecoResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Endereco.");
         LOG.debug("Debug de busca de lista de Endereco.");
@@ -92,7 +88,6 @@ public class EnderecoResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             EnderecoResponseDTO a = service.findById(id);
@@ -107,8 +102,7 @@ public class EnderecoResource {
 
     @GET
     @Path("/search/cep/{cep}")
-    @RolesAllowed({   "Admin" })
-    public Response findByNome(@PathParam("cep") String cep) {
+    public Response findByCep(@PathParam("cep") String cep) {
         try {
             LOG.info("Buscando Endereco pelo cep.");
             LOG.debug("Debug de busca de Endereco pelo cep.");

@@ -1,15 +1,27 @@
 package com.casefy.dto.Endereco;
 
+import com.casefy.dto.Cidade.CidadeDTO;
+import com.casefy.model.Endereco;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public record EnderecoDTO(
-        @NotBlank(message = "O campo logradouro não pode ser nulo") String logradouro,
-        @NotBlank(message = "O campo numero não pode ser nulo") String numero,
-        String complemento,
-        @NotBlank(message = "O campo bairro não pode ser nulo") String bairro,
-        @NotBlank(message = "O campo CEP não pode ser nulo.") @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "CEP inválido use esse modelo: 00000-000") String cep,
-        @NotNull(message = "O campo cidade não pode ser nulo") Long idCidade
-         ){
-    }
+                @NotBlank(message = "O campo logradouro não pode ser nulo") String logradouro,
+                @NotBlank(message = "O campo numero não pode ser nulo") String numero,
+                String complemento,
+                @NotBlank(message = "O campo bairro não pode ser nulo") String bairro,
+                @NotBlank(message = "O campo CEP não pode ser nulo.") @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "CEP inválido use esse modelo: 00000-000") String cep,
+                @NotNull(message = "O campo cidade não pode ser nulo") CidadeDTO cidade) {
+
+        public static EnderecoDTO valueOf(Endereco endereco) {
+                return new EnderecoDTO(
+                                endereco.getLogradouro(),
+                                endereco.getNumero(),
+                                endereco.getComplemento(),
+                                endereco.getBairro(),
+                                endereco.getCep(),
+                                CidadeDTO.valueOf(endereco.getCidade()));
+        }
+}
