@@ -2,7 +2,7 @@ package com.casefy.repository;
 
 import java.util.List;
 
-import com.casefy.model.Estado;
+import com.casefy.model.Marca;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;

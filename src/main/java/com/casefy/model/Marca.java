@@ -22,10 +22,6 @@ public class Marca {
         this.nome = nome;
     }
 
-    public Object valueOf() {
-        return null;
-    }
-
     public Long getId() {
         return id;
     }

@@ -6,7 +6,7 @@ public record CidadeResponseDTO(
         Long id,
         String nome,
         String estado) {
-    public static CidadeResponseDTO valueOf(Cidade cidade){
-        return new CidadeResponseDTO(cidade.getId(), cidade.getNome(), cidade.getEstado().getNome());
+    public static CidadeResponseDTO valueOf(Cidade novoCidade){
+        return new CidadeResponseDTO(novoCidade.getId(), novoCidade.getNome(), novoCidade.getEstado().getNome());
     }
 }
