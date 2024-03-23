@@ -13,6 +13,7 @@ import com.casefy.repository.MarcaRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
@@ -22,6 +23,7 @@ public class MarcaServiceImpl implements MarcaService {
     MarcaRepository marcaRepository;
 
     @Override
+    @Transactional
     public MarcaResponseDTO insert(MarcaDTO dto) {
         Marca novaMarca = new Marca();
         novaMarca.setNome(dto.nome());
@@ -31,6 +33,7 @@ public class MarcaServiceImpl implements MarcaService {
     }
 
     @Override
+    @Transactional
     public MarcaResponseDTO update(MarcaDTO dto, Long id) {
         Marca marcaExistente = marcaRepository.findById(id);
         if (marcaExistente == null) {
@@ -43,6 +46,7 @@ public class MarcaServiceImpl implements MarcaService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!marcaRepository.deleteById(id))
             throw new NotFoundException();

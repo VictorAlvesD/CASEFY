@@ -34,7 +34,7 @@ public class MarcaResource {
     private static final Logger LOG = Logger.getLogger(ModeloResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response insert(MarcaDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Modelo.");
         try {
@@ -52,7 +52,7 @@ public class MarcaResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response update(MarcaDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Marca");
@@ -69,7 +69,7 @@ public class MarcaResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando a Marca");
@@ -84,7 +84,7 @@ public class MarcaResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos as Marca.");
         LOG.debug("Debug de busca de lista de Marca.");
@@ -93,7 +93,7 @@ public class MarcaResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             MarcaResponseDTO a = service.findById(id);
@@ -108,7 +108,7 @@ public class MarcaResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response findByNome(@PathParam("nome") String nome) {
         try {
             LOG.info("Buscando Marca pelo nome.");
