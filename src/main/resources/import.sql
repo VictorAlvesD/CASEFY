@@ -1,4 +1,4 @@
-/*
+
 -- Administrador
 insert into administrador ( id, nome, login, senha, cpf, matricula, perfil) 
 values( 1, 'Victor Alves', 'victor@unitins.br', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', '753.369.654-98', 159, 2);
@@ -100,11 +100,10 @@ insert into cartaoCredito ( bandeira, numeroCartao, codigoSeguranca, dataVencime
 values( 'Visa', '111225589', '569', '2024-03-08');
 
 -- Modelos
-
-insert into modelo ( nome, marca) values( 'Iphone Xr', 'Apple');
-insert into modelo ( nome, marca) values( 'A45', 'Samsung');
-insert into modelo ( nome, marca) values( 'Iphone X', 'Apple');
-insert into modelo ( nome, marca) values( 'A50', 'Samsung');
+insert into modelo ( nome, idMarca) values( 'Iphone Xr', 1);
+insert into modelo ( nome, idMarca) values( 'A45', 2);
+insert into modelo ( nome, idMarca) values( 'Iphone X', 3);
+insert into modelo ( nome, idMarca) values( 'A50', 4);
 
 -- Capinhas
 
@@ -118,7 +117,6 @@ insert into capinha ( nome, descricao, valor, quantEstoque, modelo_id, cor)
 values( 'Capinha de titânio ', 'Uma capinha de celular', 45.0, 5, 4, 'TRANSPARENTE');
 insert into capinha ( nome, descricao, valor, quantEstoque, modelo_id, cor)
 values( 'Capinha de Glitter ', 'Uma capinha de celular', 45.0, 5, 1, 'LARANJA');
-*/
 
 insert into marca ( nome) values('Samsung');
 insert into marca ( nome) values('Xiaomi');

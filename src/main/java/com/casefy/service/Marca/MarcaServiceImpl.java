@@ -23,10 +23,11 @@ public class MarcaServiceImpl implements MarcaService {
     @Transactional
     public MarcaResponseDTO insert(MarcaDTO dto) {
         Marca novaMarca = new Marca();
+
         novaMarca.setNome(dto.nome());
         marcaRepository.persist(novaMarca);
 
-        return MarcaResponseDTO.valueOf(novaMarca);
+        return new MarcaResponseDTO(novaMarca);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class MarcaServiceImpl implements MarcaService {
         marcaExistente.setNome(dto.nome());
         
         marcaRepository.persist(marcaExistente);
-        return MarcaResponseDTO.valueOf(marcaExistente);
+        return new MarcaResponseDTO(marcaExistente);
     }
 
     @Override
@@ -55,19 +56,19 @@ public class MarcaServiceImpl implements MarcaService {
         if (marca == null) {
             throw new EntityNotFoundException("Marca não encontrada com ID: " + id);
         }
-        return MarcaResponseDTO.valueOf(marca);
+        return new MarcaResponseDTO(marca);
     }
 
     @Override
     public List<MarcaResponseDTO> findByNome(String nome) {
         return marcaRepository.findByNome(nome).stream()
-                .map(e -> MarcaResponseDTO.valueOf(e)).toList();
+                .map(e -> new MarcaResponseDTO(e)).toList();
     }
 
     @Override
     public List<MarcaResponseDTO> findByAll() {
         return marcaRepository.listAll().stream()
-                .map(e -> MarcaResponseDTO.valueOf(e)).toList();
+                .map(e -> new MarcaResponseDTO(e)).toList();
     }
 
 }

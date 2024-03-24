@@ -36,7 +36,7 @@ public class CapinhaServiceImpl implements CapinhaService {
 
         repository.persist(novaCapinha);
 
-        return CapinhaResponseDTO.valueOf(novaCapinha);
+        return new CapinhaResponseDTO(novaCapinha);
     }
 
     @Override

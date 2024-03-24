@@ -11,5 +11,5 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class MarcaRepository implements PanacheRepository<Marca>{
     public List<Marca> findByNome(String nome) {
         return find("UPPER(nome) LIKE UPPER(?1) ", "%"+nome+"%").list();
-    }
+    }   
 }

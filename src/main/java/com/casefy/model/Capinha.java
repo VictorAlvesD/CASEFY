@@ -1,7 +1,5 @@
 package com.casefy.model;
 
-import java.math.BigDecimal;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
@@ -20,7 +18,7 @@ public class Capinha extends DefaultEntity {
     @Column(length = 500)
     private String descricao;
 
-    private BigDecimal valor;
+    private Float valor;
 
     @Column(columnDefinition = "INTEGER CHECK (quantEstoque >= 0)")
     private Integer quantEstoque;
@@ -29,6 +27,11 @@ public class Capinha extends DefaultEntity {
     @JoinColumn(name = "modelo_id")
     @JsonBackReference
     private Modelo modelo;
+
+    @ManyToOne
+    @JoinColumn(name = "marca_id")
+    @JsonBackReference
+    private Marca marca;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -69,11 +72,11 @@ public class Capinha extends DefaultEntity {
         this.descricao = descricao;
     }
 
-    public BigDecimal getValor() {
+    public Float getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(Float valor) {
         this.valor = valor;
     }
 
@@ -91,6 +94,14 @@ public class Capinha extends DefaultEntity {
 
     public void setNomeImagem(String nomeImagem) {
         this.nomeImagem = nomeImagem;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
 }
