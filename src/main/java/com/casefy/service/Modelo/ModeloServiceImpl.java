@@ -3,7 +3,9 @@ package com.casefy.service.Modelo;
 import java.util.List;
 
 import com.casefy.dto.Modelo.*;
+import com.casefy.model.Marca;
 import com.casefy.model.Modelo;
+import com.casefy.repository.MarcaRepository;
 import com.casefy.repository.ModeloRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -15,57 +17,65 @@ import jakarta.ws.rs.NotFoundException;
 @ApplicationScoped
 public class ModeloServiceImpl implements ModeloService {
     @Inject
-    ModeloRepository repository;
+    ModeloRepository modeloRepository;
+
+    @Inject
+    MarcaRepository marcaRepository;
 
     @Override
     @Transactional
-    public ModeloResponseDTO insert(ModeloDTO dto) {
+    public ModeloResponseDTO insert(ModeloDTO modeloDTO) {
 
         Modelo novoModelo = new Modelo();
-        novoModelo.setNome(dto.nome());
-        novoModelo.setMarca(dto.marca());
+        novoModelo.setNome(modeloDTO.nome());
 
-        repository.persist(novoModelo);
+        novoModelo.setMarca(new Marca());
+        novoModelo.getMarca().setId(modeloDTO.idMarca());
 
-        return ModeloResponseDTO.valueOf(novoModelo);
+        modeloRepository.persist(novoModelo);
+
+        return new ModeloResponseDTO(novoModelo);
     }
 
     @Override
     @Transactional
     public ModeloResponseDTO update(ModeloDTO dto, Long id) {
 
-        Modelo modeloExistente = repository.findById(id);
+        Modelo modeloExistente = modeloRepository.findById(id);
         modeloExistente.setNome(dto.nome());
-        modeloExistente.setMarca(dto.marca());
 
-        return ModeloResponseDTO.valueOf(modeloExistente);
+        if(!dto.idMarca().equals(modeloExistente.getMarca().getId())){
+            modeloExistente.getMarca().setId(dto.idMarca());
+        }
+
+        return new ModeloResponseDTO(modeloExistente);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
-        if (!repository.deleteById(id))
+        if (!modeloRepository.deleteById(id))
             throw new NotFoundException();
     }
 
     @Override
     public ModeloResponseDTO findById(Long id) {
-        Modelo modelo = repository.findById(id);
+        Modelo modelo = modeloRepository.findById(id);
         if (modelo == null) {
             throw new EntityNotFoundException("Modelo não encontrado com ID: " + id);
         }
-        return ModeloResponseDTO.valueOf(modelo);
+        return new ModeloResponseDTO(modelo);
     }
 
     @Override
     public List<ModeloResponseDTO> findByNome(String nome) {
-        return repository.findByNome(nome).stream()
-                .map(e -> ModeloResponseDTO.valueOf(e)).toList();
+        return modeloRepository.findByNome(nome).stream()
+                .map(e -> new ModeloResponseDTO(e)).toList();
     }
 
     @Override
     public List<ModeloResponseDTO> findByAll() {
-        return repository.listAll().stream()
-                .map(e -> ModeloResponseDTO.valueOf(e)).toList();
+        return modeloRepository.listAll().stream()
+                .map(e -> new ModeloResponseDTO(e)).toList();
     }
 }

@@ -3,6 +3,7 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 
 import com.casefy.application.Result;
+import com.casefy.dto.Marca.MarcaDTO;
 import com.casefy.dto.Modelo.*;
 import com.casefy.service.Modelo.ModeloService;
 
@@ -33,8 +34,8 @@ public class ModeloResource {
     private static final Logger LOG = Logger.getLogger(ModeloResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
-    public Response insert(ModeloDTO dto) throws Exception {
+    //@RolesAllowed({   "Admin" })
+    public Response insert(ModeloDTO dto, MarcaDTO idMarca) throws Exception {
         LOG.debug("Debug de inserção de Modelo.");
         try {
             LOG.info("Inserindo Modelo");
@@ -51,7 +52,7 @@ public class ModeloResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response update(ModeloDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Modelo");
@@ -68,7 +69,7 @@ public class ModeloResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Modelo");
@@ -83,7 +84,7 @@ public class ModeloResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Modelo.");
         LOG.debug("Debug de busca de lista de Modelo.");
@@ -92,7 +93,7 @@ public class ModeloResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             ModeloResponseDTO a = service.findById(id);
@@ -107,7 +108,7 @@ public class ModeloResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    @RolesAllowed({   "Admin" })
+    //@RolesAllowed({   "Admin" })
     public Response findByNome(@PathParam("nome") String cep) {
         try {
             LOG.info("Buscando Modelo pelo nome.");

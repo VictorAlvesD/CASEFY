@@ -1,23 +1,25 @@
 package com.casefy.model;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Modelo extends DefaultEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     @Column(length = 60)
     private String nome;
-    @Column(length = 30)
-    private String marca;
-    @OneToMany(mappedBy = "modelo", fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private List<Capinha> capinhas;
+
+    @ManyToOne
+    @JoinColumn(name = "id_marca", nullable = false)
+    private Marca marca;
 
     public String getNome() {
         return nome;
@@ -27,20 +29,19 @@ public class Modelo extends DefaultEntity {
         this.nome = nome;
     }
 
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 
-    public List<Capinha> getCapinhas() {
-        return capinhas;
+    public Long getId() {
+        return id;
     }
 
-    public void setCapinhas(List<Capinha> capinhas) {
-        this.capinhas = capinhas;
+    public void setId(Long id) {
+        this.id = id;
     }
-
 }

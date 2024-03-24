@@ -17,8 +17,6 @@ public class Administrador extends Usuario {
     private String cpf;
     private NivelAcesso nivelAcesso;
 
-    
-
     public Integer getMatricula() {
         return matricula;
     }

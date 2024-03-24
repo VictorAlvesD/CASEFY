@@ -7,7 +7,6 @@ import com.casefy.dto.Marca.MarcaDTO;
 import com.casefy.dto.Marca.MarcaResponseDTO;
 import com.casefy.service.Marca.MarcaService;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
