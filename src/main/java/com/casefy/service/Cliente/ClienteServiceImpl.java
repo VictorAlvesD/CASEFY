@@ -8,7 +8,6 @@ import com.casefy.dto.Cliente.*;
 import com.casefy.model.Cidade;
 import com.casefy.model.Cliente;
 import com.casefy.model.Endereco;
-import com.casefy.model.Estado;
 import com.casefy.model.Perfil;
 import com.casefy.model.Telefone;
 import com.casefy.repository.CidadeRepository;
@@ -73,7 +72,7 @@ public class ClienteServiceImpl implements ClienteService {
 
                         Cidade cidade = new Cidade();
                         cidade.setNome(end.cidade().nome());
-                        cidade.setEstado(Estado.valueOf(end.cidade().estado().getId()));
+                        cidade.setEstado(end.cidade().estado());
 
                         endereco.setCidade(cidade);
 
@@ -135,7 +134,7 @@ public class ClienteServiceImpl implements ClienteService {
 
                         Cidade cidade = new Cidade();
                         cidade.setNome(end.cidade().nome());
-                        cidade.setEstado(Estado.valueOf(end.cidade().estado().getId()));
+                        cidade.setEstado(end.cidade().estado());
 
                         endereco.setCidade(cidade);
 

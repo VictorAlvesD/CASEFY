@@ -2,11 +2,8 @@ package com.casefy.service.Marca;
 
 import java.util.List;
 
-import com.casefy.dto.Cidade.CidadeResponseDTO;
 import com.casefy.dto.Marca.MarcaDTO;
 import com.casefy.dto.Marca.MarcaResponseDTO;
-import com.casefy.model.Cidade;
-import com.casefy.model.Estado;
 import com.casefy.model.Marca;
 import com.casefy.repository.MarcaRepository;
 

@@ -3,7 +3,7 @@ package com.casefy.dto.Estado;
 import com.casefy.model.Estado;
 
 public record EstadoResponseDTO(
-        Integer id,
+        Long id,
         String nome,
         String sigla) {
 

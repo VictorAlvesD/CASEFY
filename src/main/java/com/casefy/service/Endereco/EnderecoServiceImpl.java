@@ -5,7 +5,6 @@ import java.util.List;
 import com.casefy.dto.Endereco.*;
 import com.casefy.model.Cidade;
 import com.casefy.model.Endereco;
-import com.casefy.model.Estado;
 import com.casefy.repository.CidadeRepository;
 import com.casefy.repository.EnderecoRepository;
 
@@ -36,8 +35,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
         Cidade cidade = new Cidade();
         cidade.setNome(dto.cidade().nome());
-        cidade.setEstado(Estado.valueOf(dto.cidade().estado().getId()));
-
+        cidade.setEstado(dto.cidade().estado());
         novoEndereco.setCidade(cidade);
 
         repository.persist(novoEndereco);
@@ -58,7 +56,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
         Cidade cidade = new Cidade();
         cidade.setNome(dto.cidade().nome());
-        cidade.setEstado(Estado.valueOf(dto.cidade().estado().getId()));
+        cidade.setEstado(dto.cidade().estado());
 
         updEndereco.setCidade(cidade);
 
