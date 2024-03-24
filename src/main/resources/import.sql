@@ -119,3 +119,7 @@ values( 'Capinha de titânio ', 'Uma capinha de celular', 45.0, 5, 4, 'TRANSPARE
 insert into capinha ( nome, descricao, valor, quantEstoque, modelo_id, cor)
 values( 'Capinha de Glitter ', 'Uma capinha de celular', 45.0, 5, 1, 'LARANJA');
 */
+
+insert into marca ( nome) values('Samsung');
+insert into marca ( nome) values('Xiaomi');
+insert into marca ( nome) values('LG');
