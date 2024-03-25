@@ -6,7 +6,10 @@ public record MarcaResponseDTO(
         Long id,
         String nome) {
 
-    public MarcaResponseDTO(Marca marca) {
-        this(marca.getId(), marca.getNome());
+    public static MarcaResponseDTO valueOf(Marca marca) {
+        return new MarcaResponseDTO(
+                marca.getId(),
+                marca.getNome()
+        );
     }
 }

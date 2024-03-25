@@ -34,7 +34,7 @@ public class ModeloServiceImpl implements ModeloService {
 
         modeloRepository.persist(novoModelo);
 
-        return new ModeloResponseDTO(novoModelo);
+        return ModeloResponseDTO.valueOf(novoModelo);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ModeloServiceImpl implements ModeloService {
             modeloExistente.getMarca().setId(dto.idMarca());
         }
 
-        return new ModeloResponseDTO(modeloExistente);
+        return ModeloResponseDTO.valueOf(modeloExistente);
     }
 
     @Override
@@ -64,18 +64,18 @@ public class ModeloServiceImpl implements ModeloService {
         if (modelo == null) {
             throw new EntityNotFoundException("Modelo não encontrado com ID: " + id);
         }
-        return new ModeloResponseDTO(modelo);
+        return ModeloResponseDTO.valueOf(modelo);
     }
 
     @Override
     public List<ModeloResponseDTO> findByNome(String nome) {
         return modeloRepository.findByNome(nome).stream()
-                .map(e -> new ModeloResponseDTO(e)).toList();
+                .map(e ->  ModeloResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public List<ModeloResponseDTO> findByAll() {
         return modeloRepository.listAll().stream()
-                .map(e -> new ModeloResponseDTO(e)).toList();
+                .map(e ->  ModeloResponseDTO.valueOf(e)).toList();
     }
 }
