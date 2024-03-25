@@ -1,91 +1,24 @@
-@startuml
-class CaseProtetora {
-    - id: Long
-    - modelo: Modelo
-    - cor: Cor
-    - valor: Integer
-    - descrição: String
-    - fornecedor: String
-}
-
-class Estoque{
-    - id: Long
-    - quantidade: Integer
-}
-
-class ModeloCelular {
-    - id: Long
-    - nome: String
-}
-
-class Marca{
-    - id: Long
-    - nome: String
-}
-
-ENUM Cor {
-    - id: Long
-    - nome: String
-}
-
-class ItemVenda {
-    - id: Long
-    - livro: Livro
-    - quantidade: Integer
-    - valorUnitario: float
-    - valorTotal: float
-}
-
-class Venda{
-    - id: Long
-    - cliente: Cliente
-    - valorTotal: float
-    - desconto: float
-}
-
-class Pagamento {
-    - id: Long
-    - tipo: String
-    - valor: float
-}
-
-class CartaoDeCredito {
-    - id: Long
-    - numeroCartao: String
-    - dataValidade: LocalDate
-    - codigoSeguranca: String
-    - bandeira: String
-}
-
-class BoletoBancario {
-    - id: Long
-    - banco: String
-    - numeroBoleto: String
-    - dataVencimento: LocalDate
-}
-
-class Pix {
-    - id: Long
-    - chavePix: String
-}
-
 class Usuario {
     - id: Long
     - nome: String
     - dataNascimento: Date
     - email: String
     - senha: String
-    - cpf: String
-}
-
-class Cliente {
-    - id: Long
 }
 
 class Administrador {
     - id: Long
     - matricula: Integer
-    - nivesAScesso: Integer
+}
+
+class Cliente {
+    - id: Long
+    - cpf: String
+}
+
+class NivelAcesso {
+    - codigo: Integer
+    - descricao: String
 }
 
 class Endereco {
@@ -97,15 +30,15 @@ class Endereco {
     - cep: String
 }
 
-class Cidade{
-    - id: Long
-    - nome: String
-}
-
-class Telefone{
+class Telefone {
     - id: Long
     - codArea: String
     - numero: String
+}
+
+class Cidade {
+    - id: Long
+    - nome: String
 }
 
 class Estado {
@@ -114,43 +47,109 @@ class Estado {
     - sigla: String
 }
 
+class Marca {
+    - id: Long
+    - nome: String
+}
 
-Usuario "1" <|-- "*" Cliente
+class ModeloCelular {
+    - id: Long
+    - nome: String
+    - marca: Marca
+}
 
-Cliente "1" o--> "*" Endereco
+class CaseProtetora {
+    - id: Long
+    - modelo: ModeloCelular
+}
 
-Cliente "1" o--> "*" Telefone
+class Cor {
+    - id: Long
+    - nome: String
+}
 
-Endereco "*" --> "1" Cidade
+class Lote {
+    - id: Long
+    - fornecedor: Fornecedor
+    - caseProtetora: CaseProtetora
+}
 
-Cidade "1" --> "1" Estado
+class Fornecedor {
+    - id: Long
+    - nome: String
+}
 
+class Estoque {
+    - id: Long
+    - quantidade: Integer
+}
 
-Usuario "1" <|-- "*" Administrador
+class ItemVenda {
+    - id: Long
+    - caseProtetora: CaseProtetora
+}
 
+class Venda {
+    - id: Long
+    - pagamento: Pagamento
+}
 
-ItemVenda "1" o--> "1" CaseProtetora
+class Pagamento {
+    - id: Long
+    - data: Date
+}
 
+class Pix {
+    - id: Long
+    - chavePix: String
+}
 
-CaseProtetora "1" o--> "*" ModeloCelular
+class CartaoDeCredito {
+    - id: Long
+    - numeroCartao: String
+    - codigoSeguranca: String
+    - bandeira: String
+}
 
-CaseProtetora "*" *--> "1" Cor
+class BoletoBancario {
+    - id: Long
+    - banco: String
+    - numeroBoleto: String
+}
 
-CaseProtetora "1" o--> "1" Estoque
+class ModoPagamento{
+    id: Long
+    data: Date
+}
 
-Pagamento "1" o--> "*" CartaoDeCredito
+Administrador --|> Usuario
+Administrador "*" o--> "1" NivelAcesso
 
-Pagamento "1" o--> "*" BoletoBancario
+Cliente --|> Usuario
+Cliente "1" *--> "*" Endereco
+Cliente "1" *--> "*" Telefone
+Cliente "1" *--> "*" ModoPagamento
 
-Pagamento "1" o--> "*" Pix
+Endereco "*" o--> "1" Cidade
+Cidade "*" o--> "1" Estado
 
-Cliente "1" -- "0..*" Venda
+ModeloCelular "*" o--> "1" Marca
 
-Venda"*" o--> "1" Endereco
+CaseProtetora "*" o--> "1" ModeloCelular
+CaseProtetora "*" o--> "*" Cor
 
-Venda"1" o--> "*" ItemVenda
+Lote "1" o--> "1" Fornecedor
+Lote "1" o--> "*" CaseProtetora
 
-Venda"1" o--> "1" Pagamento
+Estoque "1" o--> "*" Lote
 
-Marca "1" o--> "*" ModeloCelular
-@enduml
+ItemVenda "1" o--> "*" CaseProtetora
+Venda "1" *--> "1" ItemVenda
+Venda "1" *--> "1" Pagamento
+
+Venda "1" o--> "1" Cliente
+
+Pagamento "1" o--> "1" ModoPagamento
+ModoPagamento "1" *--> "1" Pix
+ModoPagamento "1" *--> "1" CartaoDeCredito
+Pagamento "1" *--> "1" BoletoBancario
