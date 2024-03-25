@@ -9,6 +9,7 @@ import com.casefy.repository.CidadeRepository;
 import com.casefy.repository.EstadoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
@@ -24,13 +25,22 @@ public class CidadeServiceImpl implements CidadeService {
     @Override
     @Transactional
     public CidadeResponseDTO insert(CidadeDTO dto) {
-        Cidade novoCidade = new Cidade();
-        novoCidade.setNome(dto.nome());
-        novoCidade.setEstado(Estado.valueOf(dto.estado().getId()));
 
-        repository.persist(novoCidade);
+        var novacidade = new Cidade();
+        novacidade.setNome(dto.nome());
 
-        return CidadeResponseDTO.valueOf(novoCidade);
+        // Verificar se já existe um estado com o mesmo nome e sigla
+        List<Estado> estadoExistente = estadoRepository.findByNomeAndSigla(dto.estado().getNome(),
+                dto.estado().getSigla());
+        if (estadoExistente != null) {
+            throw new EntityExistsException(
+                    "Estado já cadastrado: " + ((Cidade) estadoExistente).getNome() + " (" + ((Estado) estadoExistente).getSigla() + ")");
+        }
+        novacidade.setEstado(dto.estado());
+
+        repository.persist(novacidade);
+
+        return CidadeResponseDTO.valueOf(novacidade);
     }
 
     @Override
@@ -42,8 +52,8 @@ public class CidadeServiceImpl implements CidadeService {
             throw new EntityNotFoundException("Cidade com ID " + id + " não encontrada");
         }
         cidadeExistente.setNome(dto.nome());
-        cidadeExistente.setEstado(Estado.valueOf(dto.estado().getId()));
-        
+        cidadeExistente.setEstado(dto.estado());
+
         repository.persist(cidadeExistente);
         return CidadeResponseDTO.valueOf(cidadeExistente);
     }
