@@ -2,8 +2,8 @@ package com.casefy.dto.Cliente;
 
 import java.util.List;
 
-import com.casefy.dto.Endereco.EnderecoDTO;
-import com.casefy.dto.Telefone.TelefoneDTO;
+import com.casefy.dto.Endereco.EnderecoResponseDTO;
+import com.casefy.dto.Telefone.TelefoneResponseDTO;
 import com.casefy.model.Cliente;
 
 public record ClienteResponseDTO(
@@ -11,8 +11,8 @@ public record ClienteResponseDTO(
         String nome,
         String login,
         String cpf,
-        List<TelefoneDTO> listaTelefones,
-        List<EnderecoDTO> listaEnderecos) {
+        List<TelefoneResponseDTO> listaTelefones,
+        List<EnderecoResponseDTO> listaEnderecos) {
     public static ClienteResponseDTO valueOf(Cliente cliente) {
         if (cliente == null) {
             return new ClienteResponseDTO(null, null, null, null, null, null);
@@ -24,10 +24,10 @@ public record ClienteResponseDTO(
                 cliente.getCpf(),
                 cliente.getTelefone()
                         .stream()
-                        .map(t -> TelefoneDTO.valueOf(t)).toList(),
+                        .map(t -> TelefoneResponseDTO.valueOf(t)).toList(),
                 cliente.getEndereco()
                         .stream()
-                        .map(t -> EnderecoDTO.valueOf(t)).toList()
+                        .map(t -> EnderecoResponseDTO.valueOf(t)).toList()
         );
     }
 }
