@@ -34,6 +34,7 @@ public class EstadoResource {
     private static final Logger LOG = Logger.getLogger(ModeloResource.class);
 
     @POST
+    @Transactional
     //@RolesAllowed({   "Admin" })
     public Response insert(EstadoDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Estado.");

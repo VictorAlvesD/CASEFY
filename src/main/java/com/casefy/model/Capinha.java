@@ -29,8 +29,6 @@ public class Capinha extends DefaultEntity {
     private Modelo modelo;
 
     @ManyToOne
-    @JoinColumn(name = "marca_id")
-    @JsonBackReference
     private Marca marca;
 
     @Column

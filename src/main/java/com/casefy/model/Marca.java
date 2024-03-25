@@ -18,22 +18,22 @@ public class Marca {
     @Column(length = 60)
     private String nome;
 
-    @OneToMany(mappedBy = "modelos")
-    private List<Modelo> modelo = new ArrayList<>();
+    @OneToMany(mappedBy = "marca")
+    private List<Modelo> modelos;
 
-    @OneToMany(mappedBy = "capinhas")
-    private List<Capinha> capinhas = new ArrayList<>();
+    @OneToMany(mappedBy = "marca")
+    private List<Capinha> capinhas;
 
     public String getNome() {
         return nome;
     }
 
     public List<Modelo> getModelo() {
-        return modelo;
+        return modelos;
     }
 
     public void setModelo(List<Modelo> modelo) {
-        this.modelo = modelo;
+        this.modelos = modelo;
     }
 
     public List<Capinha> getCapinhas() {
