@@ -4,12 +4,10 @@ import java.util.List;
 
 import com.casefy.dto.Cidade.*;
 import com.casefy.model.Cidade;
-import com.casefy.model.Estado;
 import com.casefy.repository.CidadeRepository;
 import com.casefy.repository.EstadoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
