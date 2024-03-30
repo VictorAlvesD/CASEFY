@@ -13,4 +13,6 @@ public record LoteDto(
     @NotNull (message = "O campo valor unitario não pode ser nulo") Float valorUnitario,
     @NotNull (message = "O campo valor total não pode ser nulo") Float valorTotal,
     @JsonFormat(pattern = "dd/MM/yyyy") @NotBlank (message = "A data não pode ser nula") Date dataCompra
-) {}
+    ) {
+
+}
