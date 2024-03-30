@@ -1,10 +1,13 @@
 package com.casefy.model;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Lote {
@@ -14,6 +17,49 @@ public class Lote {
 
     @OneToOne(mappedBy = "lote")
     private Fornecedor fornecedor;
+
+    @Positive(message = "A quantidade de item deve ser positivo")
+    private Integer quantidadeItens;
+
+    @Positive(message = "O valor unitario deve ser positivo")
+    private Float valorUnitario;
+
+    @Positive(message = "O valor total deve ser positivo")
+    private Float valorTotal;
+
+    private Date dataCompra;
+
+    public Integer getQuantidadeItens() {
+        return quantidadeItens;
+    }
+
+    public void setQuantidadeItens(Integer quantidadeItens) {
+        this.quantidadeItens = quantidadeItens;
+    }
+
+    public Float getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(Float valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public Float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Date getDataCompra() {
+        return dataCompra;
+    }
+
+    public void setDataCompra(Date dataCompra) {
+        this.dataCompra = dataCompra;
+    }
 
     public Long getId() {
         return id;
