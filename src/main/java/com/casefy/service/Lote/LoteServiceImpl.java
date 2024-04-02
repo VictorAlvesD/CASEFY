@@ -34,6 +34,7 @@ public class LoteServiceImpl implements LoteService {
         lote.setValorUnitario(dto.valorUnitario());
         lote.setValorTotal(dto.valorTotal());
         lote.setDataCompra(dto.dataCompra());
+        lote.setCodigo(dto.codigo());
 
         // Busca do fornecedor pelo ID
         Fornecedor fornecedor = fornecedorRepository.findById(dto.idfornecedor());
@@ -61,7 +62,8 @@ public class LoteServiceImpl implements LoteService {
             loteExistente.setValorUnitario(dto.valorUnitario());
             loteExistente.setValorTotal(dto.valorTotal());
             loteExistente.setDataCompra(dto.dataCompra());
-
+            loteExistente.setCodigo(dto.codigo());
+            
             // Busca do fornecedor pelo ID
             Fornecedor fornecedor = fornecedorRepository.findById(dto.idfornecedor());
             if (fornecedor == null) {
