@@ -1,11 +1,12 @@
 package com.casefy.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Fornecedor {
@@ -16,9 +17,8 @@ public class Fornecedor {
     private String cnpj;
     private String email;
 
-    @OneToOne
-    @JoinColumn(name = "lote_id")
-    private Lote lote;
+    @OneToMany(mappedBy = "fornecedor")
+    private List<Lote> lotes;
 
     public Long getId() {
         return id;
@@ -52,12 +52,12 @@ public class Fornecedor {
         this.email = email;
     }
 
-    public Lote getLote() {
-        return lote;
+    public List<Lote> getLotes() {
+        return lotes;
     }
 
-    public void setLote(Lote lote) {
-        this.lote = lote;
+    public void setLotes(List<Lote> lotes) {
+        this.lotes = lotes;
     }
 
 }

@@ -3,8 +3,7 @@ package com.casefy.service.Lote;
 import java.util.Date;
 import java.util.List;
 
-import com.casefy.dto.Lote.LoteDto;
-import com.casefy.dto.Lote.LoteResponseDto;
+import com.casefy.dto.Lote.*;
 import com.casefy.model.Fornecedor;
 import com.casefy.model.Lote;
 import com.casefy.repository.FornecedorRepository;
@@ -12,6 +11,7 @@ import com.casefy.repository.LoteRepository;
 
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -25,31 +25,36 @@ public class LoteServiceImpl implements LoteService {
     FornecedorRepository fornecedorRepository;
 
     @Override
-    public LoteResponseDto insert(LoteDto dto) {
-        // Verifica se o fornecedor já existe no banco de dados
-        Fornecedor fornecedorExistente = fornecedorRepository.findByCnpj(dto.fornecedor().cnpj());
+    @Transactional
+    public LoteResponseDTO insert(LoteDTO dto) {
 
-        if (fornecedorExistente != null) {
-            // Se o fornecedor já existir, atribui o fornecedor existente ao lote
-            var lote = new Lote();
-            lote.setQuantidadeItens(dto.quantidadeItens());
-            lote.setValorUnitario(dto.valorUnitario());
-            lote.setValorTotal(dto.valorTotal());
-            lote.setDataCompra(dto.dataCompra());
+        // Criação do novo lote
+        var lote = new Lote();
+        lote.setQuantidadeItens(dto.quantidadeItens());
+        lote.setValorUnitario(dto.valorUnitario());
+        lote.setValorTotal(dto.valorTotal());
+        lote.setDataCompra(dto.dataCompra());
 
-            lote.setFornecedor(fornecedorExistente);
-
-            loteRepository.persist(lote);
-
-            return LoteResponseDto.valueOf(lote);
-        } else {
-            throw new EntityNotFoundException(
-                    "Fornecedor não encontrado com o CNPJ fornecido: " + dto.fornecedor().cnpj());
+        // Busca do fornecedor pelo ID
+        Fornecedor fornecedor = fornecedorRepository.findById(dto.idfornecedor());
+        if (fornecedor == null) {
+            throw new EntityNotFoundException("Fornecedor não cadastrado! ID: " + dto.idfornecedor());
         }
+        lote.setFornecedor(fornecedor);
+        // Adiciona o lote à lista de lotes do fornecedor
+        fornecedor.getLotes().add(lote);
+
+        // Persiste o lote e o fornecedor
+        loteRepository.persist(lote);
+        fornecedorRepository.persist(fornecedor);
+
+        return LoteResponseDTO.valueOf(lote);
+
     }
 
     @Override
-    public LoteResponseDto update(LoteDto dto, Long id) {
+    @Transactional
+    public LoteResponseDTO update(LoteDTO dto, Long id) {
         Lote loteExistente = loteRepository.findById(id);
         if (loteExistente != null) {
             loteExistente.setQuantidadeItens(dto.quantidadeItens());
@@ -57,45 +62,55 @@ public class LoteServiceImpl implements LoteService {
             loteExistente.setValorTotal(dto.valorTotal());
             loteExistente.setDataCompra(dto.dataCompra());
 
-            Fornecedor fornecedorExistente = fornecedorRepository.findByCnpj(dto.fornecedor().cnpj());
-            loteExistente.setFornecedor(fornecedorExistente);
-            loteRepository.persist(loteExistente);
+            // Busca do fornecedor pelo ID
+            Fornecedor fornecedor = fornecedorRepository.findById(dto.idfornecedor());
+            if (fornecedor == null) {
+                throw new EntityNotFoundException("Fornecedor não cadastrado! ID: " + dto.idfornecedor());
+            }
+            loteExistente.setFornecedor(fornecedor);
+            // Adiciona o lote à lista de lotes do fornecedor
+            fornecedor.getLotes().add(loteExistente);
 
-            return LoteResponseDto.valueOf(loteExistente);
-        }else{
+            // Persiste o lote e o fornecedor
+            loteRepository.persist(loteExistente);
+            fornecedorRepository.persist(fornecedor);
+
+            return LoteResponseDTO.valueOf(loteExistente);
+        } else {
             throw new EntityNotFoundException(
                     "Lote não cadastrado!");
         }
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!loteRepository.deleteById(id))
             throw new NotFoundException("A exclusão falhou falhou!");
     }
 
     @Override
-    public LoteResponseDto findById(Long id) {
+    public LoteResponseDTO findById(Long id) {
         Lote lote = loteRepository.findById(id);
         if (lote != null) {
-            return LoteResponseDto.valueOf(lote);
-        }else{
+            return LoteResponseDTO.valueOf(lote);
+        } else {
             throw new EntityNotFoundException("Lote não encontrado com o ID: " + id);
         }
     }
 
     @Override
-    public List<LoteResponseDto> findByData(Date data) {
+    public List<LoteResponseDTO> findByData(Date data) {
         List<Lote> lotes = loteRepository.findByDataCompra(data);
         if (lotes == null) {
             throw new EntityNotFoundException("Lote não encontrado com a data" + data);
         }
-        return lotes.stream().map(e -> LoteResponseDto.valueOf(e)).toList();
+        return lotes.stream().map(e -> LoteResponseDTO.valueOf(e)).toList();
     }
 
     @Override
-    public List<LoteResponseDto> findByAll() {
-        return loteRepository.findAll().stream().map(f -> LoteResponseDto.valueOf(f)).toList();
+    public List<LoteResponseDTO> findByAll() {
+        return loteRepository.findAll().stream().map(f -> LoteResponseDTO.valueOf(f)).toList();
     }
 
 }

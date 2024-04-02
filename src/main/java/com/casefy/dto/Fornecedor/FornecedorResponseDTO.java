@@ -9,6 +9,9 @@ public record FornecedorResponseDTO(
         String email) {
 
     public static  FornecedorResponseDTO valueOf(Fornecedor fornecedor){
+        if (fornecedor == null) {
+            return null; // Retorna null se o fornecedor for nulo
+        }
         return new FornecedorResponseDTO(
             fornecedor.getId(),
             fornecedor.getNome(),

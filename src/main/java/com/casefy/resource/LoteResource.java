@@ -36,7 +36,7 @@ public class LoteResource {
     @POST
     @Transactional
     //@RolesAllowed({   "Admin" })
-    public Response insert(LoteDto dto) throws Exception {
+    public Response insert(LoteDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Lote.");
         try {
             LOG.info("Inserindo Lote");
@@ -54,7 +54,7 @@ public class LoteResource {
     @Transactional
     @Path("/{id}")
     //@RolesAllowed({   "Admin" })
-    public Response update(LoteDto dto, @PathParam("id") Long id) {
+    public Response update(LoteDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Lote");
             service.update(dto, id);
@@ -97,7 +97,7 @@ public class LoteResource {
     //@RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
-            LoteResponseDto a = service.findById(id);
+            LoteResponseDTO a = service.findById(id);
             LOG.info("Buscando uma Lote por ID.");
             LOG.debug("Debug de busca de ID de Lote.");
             return Response.ok(a).build();
