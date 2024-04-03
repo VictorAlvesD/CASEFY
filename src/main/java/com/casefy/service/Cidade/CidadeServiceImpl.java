@@ -4,12 +4,10 @@ import java.util.List;
 
 import com.casefy.dto.Cidade.*;
 import com.casefy.model.Cidade;
-import com.casefy.model.Estado;
 import com.casefy.repository.CidadeRepository;
 import com.casefy.repository.EstadoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
@@ -28,14 +26,6 @@ public class CidadeServiceImpl implements CidadeService {
 
         var novacidade = new Cidade();
         novacidade.setNome(dto.nome());
-
-        // Verificar se já existe um estado com o mesmo nome e sigla
-        List<Estado> estadoExistente = estadoRepository.findByNomeAndSigla(dto.estado().getNome(),
-                dto.estado().getSigla());
-        if (estadoExistente != null) {
-            throw new EntityExistsException(
-                    "Estado já cadastrado: " + ((Cidade) estadoExistente).getNome() + " (" + ((Estado) estadoExistente).getSigla() + ")");
-        }
         novacidade.setEstado(dto.estado());
 
         repository.persist(novacidade);
