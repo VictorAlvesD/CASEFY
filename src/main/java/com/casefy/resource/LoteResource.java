@@ -108,15 +108,15 @@ public class LoteResource {
     }
 
     @GET
-    @Path("/search/data/{data}")
+    @Path("/search/codigo/{codigo}")
     //@RolesAllowed({   "Admin" })
-    public Response findByNome(@PathParam("data") Date data) {
+    public Response findByCodigo(@PathParam("codigo") Long codgo) {
         try {
-            LOG.info("Buscando Lote pelo data.");
-            LOG.debug("Debug de busca de Lote pelo data.");
-            return Response.ok(service.findByData(data)).build();
+            LOG.info("Buscando Lote pelo codgo.");
+            LOG.debug("Debug de busca de Lote pelo codgo.");
+            return Response.ok(service.findByCodigo(codgo)).build();
         } catch (EntityNotFoundException e) {
-            LOG.error("Erro ao buscar Lote pelo data.");
+            LOG.error("Erro ao buscar Lote pelo codgo.");
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }

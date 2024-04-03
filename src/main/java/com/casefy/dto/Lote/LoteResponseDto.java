@@ -10,6 +10,7 @@ import com.casefy.model.Lote;
 public record LoteResponseDTO(
     Long id,
     Long codigo,
+    Integer estoque,
     FornecedorResponseDTO fornecedor,
     Integer quantidadeItens,
     Float valorUnitario,
@@ -20,6 +21,7 @@ public record LoteResponseDTO(
         return new LoteResponseDTO(
             lote.getId(),
             lote.getCodigo(),
+            lote.getEstoque(),
             FornecedorResponseDTO.valueOf(lote.getFornecedor()),
             lote.getQuantidadeItens(),
             lote.getValorUnitario(),

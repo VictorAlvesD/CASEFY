@@ -1,6 +1,5 @@
 package com.casefy.service.Lote;
 
-import java.util.Date;
 import java.util.List;
 
 import com.casefy.dto.Lote.*;
@@ -33,6 +32,7 @@ public class LoteServiceImpl implements LoteService {
         lote.setQuantidadeItens(dto.quantidadeItens());
         lote.setValorUnitario(dto.valorUnitario());
         lote.setValorTotal(dto.valorTotal());
+        lote.setEstoque(dto.estoque());
         lote.setDataCompra(dto.dataCompra());
         lote.setCodigo(dto.codigo());
 
@@ -61,6 +61,7 @@ public class LoteServiceImpl implements LoteService {
             loteExistente.setQuantidadeItens(dto.quantidadeItens());
             loteExistente.setValorUnitario(dto.valorUnitario());
             loteExistente.setValorTotal(dto.valorTotal());
+            loteExistente.setEstoque(dto.estoque());
             loteExistente.setDataCompra(dto.dataCompra());
             loteExistente.setCodigo(dto.codigo());
             
@@ -102,10 +103,10 @@ public class LoteServiceImpl implements LoteService {
     }
 
     @Override
-    public List<LoteResponseDTO> findByData(Date data) {
-        List<Lote> lotes = loteRepository.findByDataCompra(data);
+    public List<LoteResponseDTO> findByCodigo(Long cod) {
+        List<Lote> lotes = loteRepository.findByCodigo(cod);
         if (lotes == null) {
-            throw new EntityNotFoundException("Lote não encontrado com a data" + data);
+            throw new EntityNotFoundException("Lote não encontrado com a codigo: " + cod);
         }
         return lotes.stream().map(e -> LoteResponseDTO.valueOf(e)).toList();
     }

@@ -1,6 +1,5 @@
 package com.casefy.service.Lote;
 
-import java.util.Date;
 import java.util.List;
 
 import com.casefy.dto.Lote.LoteDTO;
@@ -16,7 +15,7 @@ public interface LoteService {
 
     public LoteResponseDTO findById(Long id);
 
-    public List<LoteResponseDTO> findByData(Date data);
+    public List<LoteResponseDTO> findByCodigo(Long cod);
 
     public List<LoteResponseDTO> findByAll();
 }

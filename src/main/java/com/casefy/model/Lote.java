@@ -34,7 +34,16 @@ public class Lote {
 
     private Date dataCompra;
 
-    
+    private Integer estoque;
+
+    public Integer getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
+    }
+
     public Integer getQuantidadeItens() {
         return quantidadeItens;
     }
