@@ -70,18 +70,15 @@ class Cor {
 
 class Lote {
     - id: Long
+    - codigoLote: String
     - fornecedor: Fornecedor
     - caseProtetora: CaseProtetora
+    - estoque: Integer
 }
 
 class Fornecedor {
     - id: Long
     - nome: String
-}
-
-class Estoque {
-    - id: Long
-    - quantidade: Integer
 }
 
 class ItemVenda {
@@ -122,6 +119,13 @@ class ModoPagamento{
     data: Date
 }
 
+class Promocao{
+    - id: Long
+    - codigo: String
+    - Descriçao: String
+    - valorDesconto: Float
+}
+
 Administrador --|> Usuario
 Administrador "*" o--> "1" NivelAcesso
 
@@ -141,8 +145,6 @@ CaseProtetora "*" o--> "*" Cor
 Lote "1" o--> "1" Fornecedor
 Lote "1" o--> "*" CaseProtetora
 
-Estoque "1" o--> "*" Lote
-
 ItemVenda "1" o--> "*" CaseProtetora
 Venda "1" *--> "1" ItemVenda
 Venda "1" *--> "1" Pagamento
@@ -153,3 +155,5 @@ Pagamento "1" o--> "1" ModoPagamento
 ModoPagamento "1" *--> "1" Pix
 ModoPagamento "1" *--> "1" CartaoDeCredito
 Pagamento "1" *--> "1" BoletoBancario
+
+Venda "1" --> "1" Promocao
