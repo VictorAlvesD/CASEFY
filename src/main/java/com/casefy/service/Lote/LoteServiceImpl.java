@@ -26,9 +26,8 @@ public class LoteServiceImpl implements LoteService {
     @Override
     @Transactional
     public LoteResponseDTO insert(LoteDTO dto) {
-
         // Criação do novo lote
-        var lote = new Lote();
+        Lote lote = new Lote();
         lote.setQuantidadeItens(dto.quantidadeItens());
         lote.setValorUnitario(dto.valorUnitario());
         lote.setValorTotal(dto.valorTotal());
@@ -37,20 +36,19 @@ public class LoteServiceImpl implements LoteService {
         lote.setCodigo(dto.codigo());
 
         // Busca do fornecedor pelo ID
-        Fornecedor fornecedor = fornecedorRepository.findById(dto.idfornecedor());
+        Fornecedor fornecedor = fornecedorRepository.findById(dto.fornecedor().id());
         if (fornecedor == null) {
-            throw new EntityNotFoundException("Fornecedor não cadastrado! ID: " + dto.idfornecedor());
+            throw new EntityNotFoundException("Fornecedor não cadastrado! ID: " + dto.fornecedor().id());
         }
-        lote.setFornecedor(fornecedor);
         // Adiciona o lote à lista de lotes do fornecedor
         fornecedor.getLotes().add(lote);
+        lote.setFornecedor(fornecedor);
 
-        // Persiste o lote e o fornecedor
+        // Persiste o lote. Como o fornecedor já está sendo gerenciado pela JPA, não é
+        // necessário persisti-lo separadamente.
         loteRepository.persist(lote);
-        fornecedorRepository.persist(fornecedor);
 
         return LoteResponseDTO.valueOf(lote);
-
     }
 
     @Override
@@ -64,19 +62,19 @@ public class LoteServiceImpl implements LoteService {
             loteExistente.setEstoque(dto.estoque());
             loteExistente.setDataCompra(dto.dataCompra());
             loteExistente.setCodigo(dto.codigo());
-            
+
             // Busca do fornecedor pelo ID
-            Fornecedor fornecedor = fornecedorRepository.findById(dto.idfornecedor());
+            Fornecedor fornecedor = fornecedorRepository.findById(dto.fornecedor().id());
             if (fornecedor == null) {
-                throw new EntityNotFoundException("Fornecedor não cadastrado! ID: " + dto.idfornecedor());
+                throw new EntityNotFoundException("Fornecedor não cadastrado! ID: " + dto.fornecedor().id());
             }
-            loteExistente.setFornecedor(fornecedor);
             // Adiciona o lote à lista de lotes do fornecedor
             fornecedor.getLotes().add(loteExistente);
+            loteExistente.setFornecedor(fornecedor);
 
-            // Persiste o lote e o fornecedor
+            // Persiste o lote. Como o fornecedor já está sendo gerenciado pela JPA, não é
+            // necessário persisti-lo separadamente.
             loteRepository.persist(loteExistente);
-            fornecedorRepository.persist(fornecedor);
 
             return LoteResponseDTO.valueOf(loteExistente);
         } else {

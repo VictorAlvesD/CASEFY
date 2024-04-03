@@ -2,13 +2,15 @@ package com.casefy.dto.Lote;
 
 import java.util.Date;
 
+import com.casefy.dto.Fornecedor.FornecedorDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record LoteDTO(
-    @NotNull (message = "O campo do fornecedor não pode ser nulo") Long idfornecedor,
+    Long id,
+    @NotNull (message = "O campo do fornecedor não pode ser nulo") FornecedorDTO fornecedor,
     @NotNull(message = "O campo do codigo não pode ser nulo") String codigo,
     @NotNull (message = "O campo quantidade de itens não pode ser nulo") Integer quantidadeItens,
     @NotNull (message = "O campo estoque não pode ser nulo") Integer estoque,
