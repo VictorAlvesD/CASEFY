@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record LoteDTO(
     @NotNull (message = "O campo do fornecedor não pode ser nulo") Long idfornecedor,
-    @NotNull(message = "O campo do codigo não pode ser nulo") Long codigo,
+    @NotNull(message = "O campo do codigo não pode ser nulo") String codigo,
     @NotNull (message = "O campo quantidade de itens não pode ser nulo") Integer quantidadeItens,
     @NotNull (message = "O campo estoque não pode ser nulo") Integer estoque,
     @NotNull (message = "O campo valor unitario não pode ser nulo") Float valorUnitario,

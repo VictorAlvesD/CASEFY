@@ -9,7 +9,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class LoteRepository implements PanacheRepository<Lote>{
-    public List<Lote> findByCodigo(Long codigo) {
+    public List<Lote> findByCodigo(String codigo) {
         return find("codigo = ?1", codigo).list();
     }
 }

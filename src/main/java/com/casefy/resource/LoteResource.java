@@ -110,7 +110,7 @@ public class LoteResource {
     @GET
     @Path("/search/codigo/{codigo}")
     //@RolesAllowed({   "Admin" })
-    public Response findByCodigo(@PathParam("codigo") Long codgo) {
+    public Response findByCodigo(@PathParam("codigo") String codgo) {
         try {
             LOG.info("Buscando Lote pelo codgo.");
             LOG.debug("Debug de busca de Lote pelo codgo.");

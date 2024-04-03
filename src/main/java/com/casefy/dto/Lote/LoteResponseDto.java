@@ -9,7 +9,7 @@ import com.casefy.model.Lote;
 
 public record LoteResponseDTO(
     Long id,
-    Long codigo,
+    String codigo,
     Integer estoque,
     FornecedorResponseDTO fornecedor,
     Integer quantidadeItens,

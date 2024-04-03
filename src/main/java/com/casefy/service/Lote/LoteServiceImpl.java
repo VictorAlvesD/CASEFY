@@ -103,10 +103,10 @@ public class LoteServiceImpl implements LoteService {
     }
 
     @Override
-    public List<LoteResponseDTO> findByCodigo(Long cod) {
-        List<Lote> lotes = loteRepository.findByCodigo(cod);
+    public List<LoteResponseDTO> findByCodigo(String codigo) {
+        List<Lote> lotes = loteRepository.findByCodigo(codigo);
         if (lotes == null) {
-            throw new EntityNotFoundException("Lote não encontrado com a codigo: " + cod);
+            throw new EntityNotFoundException("Lote não encontrado com a codigo: " + codigo);
         }
         return lotes.stream().map(e -> LoteResponseDTO.valueOf(e)).toList();
     }

@@ -17,7 +17,7 @@ public class Lote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long codigo;
+    private String codigo;
 
     @ManyToOne
     @JoinColumn(name = "fornecedor_id")
@@ -92,11 +92,11 @@ public class Lote {
         this.fornecedor = fornecedor;
     }
 
-    public Long getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Long codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

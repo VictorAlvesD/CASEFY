@@ -15,7 +15,7 @@ public interface LoteService {
 
     public LoteResponseDTO findById(Long id);
 
-    public List<LoteResponseDTO> findByCodigo(Long cod);
+    public List<LoteResponseDTO> findByCodigo(String cod);
 
     public List<LoteResponseDTO> findByAll();
 }
