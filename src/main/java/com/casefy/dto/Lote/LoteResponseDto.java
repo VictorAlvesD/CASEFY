@@ -1,6 +1,8 @@
 package com.casefy.dto.Lote;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import com.casefy.dto.Fornecedor.FornecedorResponseDTO;
 import com.casefy.model.Lote;
