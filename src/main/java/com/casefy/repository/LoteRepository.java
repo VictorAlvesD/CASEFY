@@ -10,6 +10,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class LoteRepository implements PanacheRepository<Lote>{
     public List<Lote> findByCodigo(String codigo) {
-        return find("codigo = ?1", codigo).list();
+        return find("UPPER(codigo) LIKE UPPER(?1) ", "%" + codigo + "%").list();
     }
 }
