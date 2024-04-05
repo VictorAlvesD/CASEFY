@@ -33,9 +33,15 @@ public class EnderecoServiceImpl implements EnderecoService {
         novoEndereco.setNumero(dto.numero());
         novoEndereco.setComplemento(dto.complemento());
 
+        Cidade cidadeExistente = cidaderepository.findByNomeAndEstado(dto.cidade().getNome(), dto.cidade().getEstado().getNome());
+        if (cidadeExistente == null) {
+            throw new EntityNotFoundException("Cidade não existe ");
+        }
+
         Cidade cidade = new Cidade();
         cidade.setNome(dto.cidade().getNome());
         cidade.setEstado(dto.cidade().getEstado());
+        
         novoEndereco.setCidade(cidade);
 
         repository.persist(novoEndereco);
@@ -53,6 +59,7 @@ public class EnderecoServiceImpl implements EnderecoService {
         updEndereco.setLogradouro(dto.logradouro());
         updEndereco.setNumero(dto.numero());
         updEndereco.setComplemento(dto.complemento());
+
 
         Cidade cidade = new Cidade();
         cidade.setNome(dto.cidade().getNome());
