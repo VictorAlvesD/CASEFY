@@ -34,8 +34,8 @@ public class EnderecoServiceImpl implements EnderecoService {
         novoEndereco.setComplemento(dto.complemento());
 
         Cidade cidade = new Cidade();
-        cidade.setNome(dto.cidade().nome());
-        cidade.setEstado(dto.cidade().estado());
+        cidade.setNome(dto.cidade().getNome());
+        cidade.setEstado(dto.cidade().getEstado());
         novoEndereco.setCidade(cidade);
 
         repository.persist(novoEndereco);
@@ -55,8 +55,8 @@ public class EnderecoServiceImpl implements EnderecoService {
         updEndereco.setComplemento(dto.complemento());
 
         Cidade cidade = new Cidade();
-        cidade.setNome(dto.cidade().nome());
-        cidade.setEstado(dto.cidade().estado());
+        cidade.setNome(dto.cidade().getNome());
+        cidade.setEstado(dto.cidade().getEstado());
 
         updEndereco.setCidade(cidade);
 
