@@ -3,6 +3,7 @@ package com.casefy.resource;
 import org.jboss.logging.Logger;
 import com.casefy.application.Result;
 import com.casefy.model.*;
+import com.casefy.repository.AdministradorRepository;
 import com.casefy.dto.Administrador.*;
 import com.casefy.service.Administrador.AdministradorService;
 
@@ -14,12 +15,14 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
@@ -81,10 +84,20 @@ public class AdministradorResource {
     }
 
     @GET
-    public Response findAll() {
+    public Response findAll(
+        @QueryParam("page") @DefaultValue("0") int page,
+        @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+
         LOG.info("Buscando todos os administradores.");
         LOG.debug("Debug de busca de lista de administradores.");
-        return Response.ok(service.findByAll()).build();
+
+        return Response.ok(service.findByAll(page, pageSize)).build();
+    }
+
+    @GET
+    @Path("/count")
+    public long count(){
+        return service.count();
     }
 
     @GET
