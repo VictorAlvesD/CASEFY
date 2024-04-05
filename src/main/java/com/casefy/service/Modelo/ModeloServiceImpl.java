@@ -3,6 +3,7 @@ package com.casefy.service.Modelo;
 import java.util.List;
 
 import com.casefy.dto.Modelo.*;
+import com.casefy.model.Marca;
 import com.casefy.model.Modelo;
 import com.casefy.repository.MarcaRepository;
 import com.casefy.repository.ModeloRepository;
