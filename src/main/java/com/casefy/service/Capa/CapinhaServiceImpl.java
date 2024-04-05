@@ -16,7 +16,7 @@ import jakarta.ws.rs.NotFoundException;
 @ApplicationScoped
 public class CapinhaServiceImpl implements CapinhaService {
     @Inject
-    CapinhaRepository repository;
+    CapinhaRepository capinhaRepository;
 
     @Inject
     ModeloRepository modeloRepository;
@@ -27,14 +27,12 @@ public class CapinhaServiceImpl implements CapinhaService {
     public CapinhaResponseDTO insert(CapinhaDTO dto) {
 
         Capinha novaCapinha = new Capinha();
-        novaCapinha.setModelo(modeloRepository.findById(dto.idModelo()));
-        novaCapinha.setCor(dto.cor());
         novaCapinha.setNome(dto.nome());
-        novaCapinha.setValor(dto.valor());
-        novaCapinha.setQuantEstoque(dto.quantEstoque());
         novaCapinha.setDescricao(dto.descricao());
+        novaCapinha.setModelo(dto.modelo());
+        novaCapinha.setValor(dto.valor());
 
-        repository.persist(novaCapinha);
+        capinhaRepository.persist(novaCapinha);
 
         return CapinhaResponseDTO.valueOf(novaCapinha);
     }
@@ -43,28 +41,30 @@ public class CapinhaServiceImpl implements CapinhaService {
     @Transactional
     public CapinhaResponseDTO update(CapinhaDTO dto, Long id) {
 
-        Capinha capinhaExistente = repository.findById(id);
+        Capinha capinhaExistente = capinhaRepository.findById(id);
+        if (capinhaExistente == null) {
+            throw new EntityNotFoundException("Capinha com ID " + id + " não encontrada");
+        }
 
         capinhaExistente.setNome(dto.nome());
-        capinhaExistente.setCor(dto.cor());
         capinhaExistente.setDescricao(dto.descricao());
-        capinhaExistente.setModelo(modeloRepository.findById(dto.idModelo()));
-        capinhaExistente.setQuantEstoque(dto.quantEstoque());
+        capinhaExistente.setModelo(dto.modelo());
         capinhaExistente.setValor(dto.valor());
 
+        capinhaRepository.persist(capinhaExistente);
         return CapinhaResponseDTO.valueOf(capinhaExistente);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
-        if (!repository.deleteById(id))
+        if (!capinhaRepository.deleteById(id))
             throw new NotFoundException();
     }
 
     @Override
     public CapinhaResponseDTO findById(Long id) {
-        Capinha capinha = repository.findById(id);
+        Capinha capinha = capinhaRepository.findById(id);
         if (capinha == null) {
             throw new EntityNotFoundException("Capinha não encontrada com ID: " + id);
         }
@@ -73,19 +73,19 @@ public class CapinhaServiceImpl implements CapinhaService {
 
     @Override
     public List<CapinhaResponseDTO> findByNome(String nome) {
-        return repository.findByNome(nome).stream()
+        return capinhaRepository.findByNome(nome).stream()
                 .map(e -> CapinhaResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public List<CapinhaResponseDTO> findByAll() {
-        return repository.listAll().stream()
+        return capinhaRepository.listAll().stream()
                 .map(e -> CapinhaResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public CapinhaResponseDTO updateNomeImagem(Long id, String nomeImagem) {
-        Capinha capinha = repository.findById(id);
+        Capinha capinha = capinhaRepository.findById(id);
         capinha.setNomeImagem(nomeImagem);
         return CapinhaResponseDTO.valueOf(capinha);}
 }

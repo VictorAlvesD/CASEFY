@@ -18,41 +18,19 @@ public class Capinha extends DefaultEntity {
     @Column(length = 500)
     private String descricao;
 
-    private Float valor;
-
-    @Column(columnDefinition = "INTEGER CHECK (quantEstoque >= 0)")
-    private Integer quantEstoque;
-
     @ManyToOne
-    @JoinColumn(name = "modelo_id")
+    @JoinColumn(name = "maodelo_id", nullable = false)
     @JsonBackReference
     private Modelo modelo;
 
-    @ManyToOne
-    private Marca marca;
-
+    private Float valor;
+/*
     @Column
     @Enumerated(EnumType.STRING)
     private Cor cor;
-
+*/
     
     private String nomeImagem;
-    
-    public Modelo getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(Modelo modelo) {
-        this.modelo = modelo;
-    }
-
-    public Cor getCor() {
-        return cor;
-    }
-
-    public void setCor(Cor cor) {
-        this.cor = cor;
-    }
 
     public String getNome() {
         return nome;
@@ -78,14 +56,6 @@ public class Capinha extends DefaultEntity {
         this.valor = valor;
     }
 
-    public Integer getQuantEstoque() {
-        return quantEstoque;
-    }
-
-    public void setQuantEstoque(Integer quantEstoque) {
-        this.quantEstoque = quantEstoque;
-    }
-
     public String getNomeImagem() {
         return nomeImagem;
     }
@@ -94,12 +64,12 @@ public class Capinha extends DefaultEntity {
         this.nomeImagem = nomeImagem;
     }
 
-    public Marca getMarca() {
-        return marca;
+    public Modelo getModelo() {
+        return modelo;
     }
 
-    public void setMarca(Marca marca) {
-        this.marca = marca;
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
     }
 
 }

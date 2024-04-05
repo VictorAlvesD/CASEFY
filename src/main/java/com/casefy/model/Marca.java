@@ -1,7 +1,9 @@
 package com.casefy.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,12 +19,12 @@ public class Marca {
     @Column(length = 60)
     private String nome;
 
-    @OneToMany(mappedBy = "marca")
-    private List<Modelo> modelos;
-
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
+    private List<Modelo> modelos = new ArrayList<>();;
+/*
     @OneToMany(mappedBy = "marca")
     private List<Capinha> capinhas;
-
+*/
     public String getNome() {
         return nome;
     }
@@ -33,14 +35,6 @@ public class Marca {
 
     public void setModelo(List<Modelo> modelo) {
         this.modelos = modelo;
-    }
-
-    public List<Capinha> getCapinhas() {
-        return capinhas;
-    }
-
-    public void setCapinhas(List<Capinha> capinhas) {
-        this.capinhas = capinhas;
     }
 
     public void setNome(String nome) {

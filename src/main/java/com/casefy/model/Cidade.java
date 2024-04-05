@@ -16,7 +16,6 @@ public class Cidade {
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
 
-
     @ManyToOne // Muitas cidades pertencem a um estado
     @JoinColumn(name = "estado_id", nullable = false)
     private Estado estado;
@@ -44,5 +43,4 @@ public class Cidade {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
 }

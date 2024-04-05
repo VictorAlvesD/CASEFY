@@ -6,7 +6,7 @@ import com.casefy.model.Modelo;
 public record ModeloResponseDTO(
         Long id,
         String nome,
-        MarcaResponseDTO idMarca) {
+        MarcaResponseDTO marca) {
 
     //valueOf converte um objeto da classe modelo para um objeto ModeloResponseDTO. 
     public static ModeloResponseDTO valueOf(Modelo modelo) {

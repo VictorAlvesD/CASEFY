@@ -50,7 +50,7 @@ public class CapinhaResource {
     private static final Logger LOG = Logger.getLogger(CapinhaResource.class);
 
     @POST
-    @RolesAllowed({ "Admin" })
+    //@RolesAllowed({ "Admin" })
     public Response insert(CapinhaDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Capinha.");
         try {
@@ -67,7 +67,7 @@ public class CapinhaResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
+    //@RolesAllowed({ "Admin" })
     public Response update(CapinhaDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Capinha");
@@ -83,7 +83,7 @@ public class CapinhaResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
+    //@RolesAllowed({ "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Capinha");
@@ -97,7 +97,7 @@ public class CapinhaResource {
     }
 
     @GET
-    @RolesAllowed({ "Admin" })
+    //@RolesAllowed({ "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Capinha.");
         LOG.debug("Debug de busca de lista de Capinha.");
@@ -106,7 +106,7 @@ public class CapinhaResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
+    //@RolesAllowed({ "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             CapinhaResponseDTO a = service.findById(id);
@@ -121,7 +121,7 @@ public class CapinhaResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    @RolesAllowed({ "Admin" })
+    //@RolesAllowed({ "Admin" })
     public Response findByNome(@PathParam("nome") String nome) {
         try {
             LOG.info("Buscando uma Capinha pelo nome.");
@@ -137,7 +137,7 @@ public class CapinhaResource {
 
     @PATCH
     @Path("/upload/imagem/{id}")
-    @RolesAllowed({ "Admin"})
+    //@RolesAllowed({ "Admin"})
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response salvarImagem(@MultipartForm CapinhaImageForm form, @PathParam("id") Long id) throws IOException {
         String nomeImagem;

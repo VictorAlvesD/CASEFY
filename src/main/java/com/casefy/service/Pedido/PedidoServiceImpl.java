@@ -68,9 +68,6 @@ public class PedidoServiceImpl implements PedidoService {
             }
             item.setCapinha(capinha);
 
-            // atualizado o estoque
-            capinha.setQuantEstoque(capinha.getQuantEstoque() - item.getQuantidade());
-
             pedido.getItens().add(item);
         }
         

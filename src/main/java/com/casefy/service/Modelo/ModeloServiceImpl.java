@@ -3,7 +3,6 @@ package com.casefy.service.Modelo;
 import java.util.List;
 
 import com.casefy.dto.Modelo.*;
-import com.casefy.model.Marca;
 import com.casefy.model.Modelo;
 import com.casefy.repository.MarcaRepository;
 import com.casefy.repository.ModeloRepository;
@@ -28,9 +27,7 @@ public class ModeloServiceImpl implements ModeloService {
 
         Modelo novoModelo = new Modelo();
         novoModelo.setNome(modeloDTO.nome());
-
-        novoModelo.setMarca(new Marca());
-        novoModelo.getMarca().setId(modeloDTO.idMarca());
+        novoModelo.setMarca(modeloDTO.marca());
 
         modeloRepository.persist(novoModelo);
 
@@ -42,12 +39,13 @@ public class ModeloServiceImpl implements ModeloService {
     public ModeloResponseDTO update(ModeloDTO dto, Long id) {
 
         Modelo modeloExistente = modeloRepository.findById(id);
-        modeloExistente.setNome(dto.nome());
-
-        if(!dto.idMarca().equals(modeloExistente.getMarca().getId())){
-            modeloExistente.getMarca().setId(dto.idMarca());
+        if (modeloExistente == null) {
+            throw new EntityNotFoundException("Modelo com ID " + id + " não encontrada");
         }
+        modeloExistente.setNome(dto.nome());
+        modeloExistente.setMarca(dto.marca());
 
+        modeloRepository.persist(modeloExistente);
         return ModeloResponseDTO.valueOf(modeloExistente);
     }
 

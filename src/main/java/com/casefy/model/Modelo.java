@@ -13,12 +13,11 @@ public class Modelo extends DefaultEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(length = 60)
+    @Column(name = "nome", nullable = false, length = 255)
     private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "marca_id")
+    @ManyToOne // Uma marca pertencem a muitos modelos
+    @JoinColumn(name = "marca_id", nullable = false)
     private Marca marca;
 
     public String getNome() {
