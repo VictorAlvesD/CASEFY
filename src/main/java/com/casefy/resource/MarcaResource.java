@@ -13,12 +13,14 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
@@ -83,11 +85,20 @@ public class MarcaResource {
     }
 
     @GET
-    //@RolesAllowed({   "Admin" })
-    public Response findAll() {
-        LOG.info("Buscando todos as Marca.");
-        LOG.debug("Debug de busca de lista de Marca.");
-        return Response.ok(service.findByAll()).build();
+    public Response findAll(
+        @QueryParam("page") @DefaultValue("0") int page,
+        @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+
+        LOG.info("Buscando todos os administradores.");
+        LOG.debug("Debug de busca de lista de administradores.");
+
+        return Response.ok(service.findByAll(page, pageSize)).build();
+    }
+
+    @GET
+    @Path("/count")
+    public long count(){
+        return service.count();
     }
 
     @GET

@@ -1,9 +1,12 @@
 package com.casefy.service.Marca;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.casefy.dto.Administrador.AdministradorResponseDTO;
 import com.casefy.dto.Marca.MarcaDTO;
 import com.casefy.dto.Marca.MarcaResponseDTO;
+import com.casefy.model.Administrador;
 import com.casefy.model.Marca;
 import com.casefy.repository.MarcaRepository;
 
@@ -66,9 +69,15 @@ public class MarcaServiceImpl implements MarcaService {
     }
 
     @Override
-    public List<MarcaResponseDTO> findByAll() {
-        return marcaRepository.listAll().stream()
-                .map(e -> MarcaResponseDTO.valueOf(e)).toList();
+    public List<MarcaResponseDTO> findByAll(int pag, int pageSize) {
+        List<Marca> list = marcaRepository.findAll().page(pag, pageSize).list();
+
+        return list.stream().map(e -> MarcaResponseDTO.valueOf(e)).collect(Collectors.toList());
+    }
+
+    @Override
+    public long count(){
+        return marcaRepository.count();
     }
 
 }
