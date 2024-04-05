@@ -38,6 +38,7 @@ public class ClienteServiceImpl implements ClienteService {
 
         // Crie um novo cliente
         Cliente novoCliente = new Cliente();
+        novoCliente.setPerfil(Perfil.CLIENTE);
         novoCliente.setNome(dto.nome());
         novoCliente.setLogin(dto.login());
         novoCliente.setSenha(dto.senha());
@@ -49,8 +50,8 @@ public class ClienteServiceImpl implements ClienteService {
             List<Telefone> telefones = dto.listaTelefone().stream()
                     .map(tel -> {
                         Telefone telefone = new Telefone();
-                        telefone.setCodArea(tel.codigoArea());
-                        telefone.setNumero(tel.numero());
+                        telefone.setCodArea(tel.getCodArea());
+                        telefone.setNumero(tel.getNumero());
                         return telefone;
                     })
                     .collect(Collectors.toList());
@@ -64,15 +65,15 @@ public class ClienteServiceImpl implements ClienteService {
             List<Endereco> enderecos = dto.listaEndereco().stream()
                     .map(end -> {
                         Endereco endereco = new Endereco();
-                        endereco.setCep(end.cep());
-                        endereco.setBairro(end.bairro());
-                        endereco.setNumero(end.numero());
-                        endereco.setLogradouro(end.logradouro());
-                        endereco.setComplemento(end.complemento());
+                        endereco.setCep(end.getCep());
+                        endereco.setBairro(end.getBairro());
+                        endereco.setNumero(end.getNumero());
+                        endereco.setLogradouro(end.getLogradouro());
+                        endereco.setComplemento(end.getComplemento());
 
                         Cidade cidade = new Cidade();
-                        cidade.setNome(end.cidade().nome());
-                        cidade.setEstado(end.cidade().estado());
+                        cidade.setNome(end.getCidade().getNome());
+                        cidade.setEstado(end.getCidade().getEstado());
 
                         endereco.setCidade(cidade);
 
@@ -98,6 +99,7 @@ public class ClienteServiceImpl implements ClienteService {
         Cliente clienteExistente = repository.findById(id);
 
         // Atualize os campos do cliente com base no DTO
+
         clienteExistente.setNome(dto.nome());
         clienteExistente.setLogin(dto.login());
         clienteExistente.setSenha(dto.senha());
@@ -110,8 +112,8 @@ public class ClienteServiceImpl implements ClienteService {
             List<Telefone> telefones = dto.listaTelefone().stream()
                     .map(tel -> {
                         Telefone telefone = new Telefone();
-                        telefone.setCodArea(tel.codigoArea());
-                        telefone.setNumero(tel.numero());
+                        telefone.setCodArea(tel.getCodArea());
+                        telefone.setNumero(tel.getNumero());
                         return telefone;
                     })
                     .collect(Collectors.toList());
@@ -126,15 +128,15 @@ public class ClienteServiceImpl implements ClienteService {
             List<Endereco> enderecos = dto.listaEndereco().stream()
                     .map(end -> {
                         Endereco endereco = new Endereco();
-                        endereco.setCep(end.cep());
-                        endereco.setBairro(end.bairro());
-                        endereco.setNumero(end.numero());
-                        endereco.setLogradouro(end.logradouro());
-                        endereco.setComplemento(end.complemento());
+                        endereco.setCep(end.getCep());
+                        endereco.setBairro(end.getBairro());
+                        endereco.setNumero(end.getNumero());
+                        endereco.setLogradouro(end.getLogradouro());
+                        endereco.setComplemento(end.getComplemento());
 
                         Cidade cidade = new Cidade();
-                        cidade.setNome(end.cidade().nome());
-                        cidade.setEstado(end.cidade().estado());
+                        cidade.setNome(end.getCidade().getNome());
+                        cidade.setEstado(end.getCidade().getEstado());
 
                         endereco.setCidade(cidade);
 
