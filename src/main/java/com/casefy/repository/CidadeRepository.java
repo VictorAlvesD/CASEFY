@@ -12,4 +12,7 @@ public class CidadeRepository implements PanacheRepository<Cidade>{
     public List<Cidade> findByNome(String nome) {
         return find("UPPER(nome) LIKE UPPER(?1) ", "%"+nome+"%").list();
     }
+    public Cidade findByNomeAndEstado(String nome, String estado) {
+        return find("UPPER(nome) LIKE UPPER(?1) AND estado.nome = ?2", "%"+nome+"%", estado).firstResult();
+    }
 }
