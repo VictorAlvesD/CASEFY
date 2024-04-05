@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.casefy.dto.Capa.*;
 import com.casefy.model.Capinha;
+import com.casefy.model.Modelo;
 import com.casefy.repository.CapinhaRepository;
 import com.casefy.repository.ModeloRepository;
 
@@ -29,7 +30,10 @@ public class CapinhaServiceImpl implements CapinhaService {
         Capinha novaCapinha = new Capinha();
         novaCapinha.setNome(dto.nome());
         novaCapinha.setDescricao(dto.descricao());
-        novaCapinha.setModelo(dto.modelo());
+
+        Modelo modelo = modeloRepository.findById(dto.modelo().getId());
+        novaCapinha.setModelo(modelo);
+
         novaCapinha.setValor(dto.valor());
 
         capinhaRepository.persist(novaCapinha);
@@ -48,7 +52,10 @@ public class CapinhaServiceImpl implements CapinhaService {
 
         capinhaExistente.setNome(dto.nome());
         capinhaExistente.setDescricao(dto.descricao());
-        capinhaExistente.setModelo(dto.modelo());
+
+        Modelo modelo = modeloRepository.findById(dto.modelo().getId());
+        capinhaExistente.setModelo(modelo);
+
         capinhaExistente.setValor(dto.valor());
 
         capinhaRepository.persist(capinhaExistente);

@@ -12,7 +12,7 @@ public record ModeloDTO(
                 @NotNull(message = "O campo marca não pode ser nulo.")
                 Marca marca
 ) {
-    public static ModeloDTO valueOf(Modelo modelo){
+    public static ModeloDTO valueOf(Modelo modelo) {
         return new ModeloDTO(modelo.getNome(), modelo.getMarca());
     }
 }

@@ -8,12 +8,10 @@ public record ModeloResponseDTO(
         String nome,
         MarcaResponseDTO marca) {
 
-    //valueOf converte um objeto da classe modelo para um objeto ModeloResponseDTO. 
     public static ModeloResponseDTO valueOf(Modelo modelo) {
         return new ModeloResponseDTO(
                 modelo.getId(),
                 modelo.getNome(),
-                MarcaResponseDTO.valueOf(modelo.getMarca())
-        );
+                MarcaResponseDTO.valueOf(modelo.getMarca()));
     }
 }

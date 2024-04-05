@@ -16,15 +16,13 @@ public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(length = 60)
     private String nome;
 
     @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
-    private List<Modelo> modelos = new ArrayList<>();;
-/*
-    @OneToMany(mappedBy = "marca")
-    private List<Capinha> capinhas;
-*/
+    private List<Modelo> modelos = new ArrayList<>();
+
     public String getNome() {
         return nome;
     }
