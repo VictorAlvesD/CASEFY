@@ -26,7 +26,7 @@ public class CidadeServiceImpl implements CidadeService {
 
         var novacidade = new Cidade();
         novacidade.setNome(dto.nome());
-        novacidade.setEstado(dto.estado());
+        novacidade.setEstado(estadoRepository.findById(dto.estado()));
 
         repository.persist(novacidade);
 
@@ -38,12 +38,17 @@ public class CidadeServiceImpl implements CidadeService {
     public CidadeResponseDTO update(CidadeDTO dto, Long id) {
 
         Cidade cidadeExistente = repository.findById(id);
+
         if (cidadeExistente == null) {
             throw new EntityNotFoundException("Cidade com ID " + id + " não encontrada");
         }
-        cidadeExistente.setNome(dto.nome());
-        cidadeExistente.setEstado(dto.estado());
-
+        if(dto.nome() != null){
+            cidadeExistente.setNome(dto.nome());
+        }
+        if(dto.estado() != null){
+            cidadeExistente.setEstado(estadoRepository.findById(dto.estado()));
+        }
+        
         repository.persist(cidadeExistente);
         return CidadeResponseDTO.valueOf(cidadeExistente);
     }

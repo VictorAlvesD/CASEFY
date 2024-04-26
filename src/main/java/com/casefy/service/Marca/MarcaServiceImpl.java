@@ -3,10 +3,8 @@ package com.casefy.service.Marca;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.casefy.dto.Administrador.AdministradorResponseDTO;
 import com.casefy.dto.Marca.MarcaDTO;
 import com.casefy.dto.Marca.MarcaResponseDTO;
-import com.casefy.model.Administrador;
 import com.casefy.model.Marca;
 import com.casefy.repository.MarcaRepository;
 

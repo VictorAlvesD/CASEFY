@@ -28,13 +28,10 @@ public class CapinhaServiceImpl implements CapinhaService {
     public CapinhaResponseDTO insert(CapinhaDTO dto) {
 
         Capinha novaCapinha = new Capinha();
-        novaCapinha.setNome(dto.nome());
-        novaCapinha.setDescricao(dto.descricao());
+        novaCapinha = CapinhaDTO.valueOf(dto);
 
-        Modelo modelo = modeloRepository.findById(dto.modelo().getId());
+        Modelo modelo = modeloRepository.findById(dto.modelo());
         novaCapinha.setModelo(modelo);
-
-        novaCapinha.setValor(dto.valor());
 
         capinhaRepository.persist(novaCapinha);
 
@@ -53,7 +50,7 @@ public class CapinhaServiceImpl implements CapinhaService {
         capinhaExistente.setNome(dto.nome());
         capinhaExistente.setDescricao(dto.descricao());
 
-        Modelo modelo = modeloRepository.findById(dto.modelo().getId());
+        Modelo modelo = modeloRepository.findById(dto.modelo());
         capinhaExistente.setModelo(modelo);
 
         capinhaExistente.setValor(dto.valor());
