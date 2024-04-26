@@ -97,7 +97,7 @@ public class CapinhaResource {
     }
 
     @GET
-    //@RolesAllowed({ "Admin" })
+    //@Permitall
     public Response findAll() {
         LOG.info("Buscando todos os Capinha.");
         LOG.debug("Debug de busca de lista de Capinha.");

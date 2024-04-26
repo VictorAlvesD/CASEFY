@@ -10,7 +10,6 @@ public record AdministradorResponseDTO(
         String email,
         String cpf,
         String perfil,
-        String senha,
         NivelAcesso idNivelAcesso) {
     public static AdministradorResponseDTO valueOf(Administrador adm) {
         return new AdministradorResponseDTO(
@@ -20,7 +19,6 @@ public record AdministradorResponseDTO(
                 adm.getEmail(),
                 adm.getCpf(),
                 adm.getPerfil().getLabel(),
-                adm.getSenha(),
                 adm.getNivelAcesso()
                 );
     }
