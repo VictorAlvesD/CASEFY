@@ -86,12 +86,13 @@ public class AdministradorResource {
     @GET
     public Response findAll(
         @QueryParam("page") @DefaultValue("0") int page,
-        @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        @QueryParam("pageSize") @DefaultValue("100") int pageSize,
+        @QueryParam("nome") String nome) {
 
         LOG.info("Buscando todos os administradores.");
         LOG.debug("Debug de busca de lista de administradores.");
 
-        return Response.ok(service.findByAll(page, pageSize)).build();
+        return Response.ok(service.findByAll(page, pageSize, nome)).build();
     }
 
     @GET

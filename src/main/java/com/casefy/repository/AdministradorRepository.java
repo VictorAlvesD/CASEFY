@@ -11,11 +11,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class AdministradorRepository implements PanacheRepository<Administrador>{
     @SuppressWarnings("unchecked")
-    public PanacheQuery<Administrador> findByNome(String nome){
+    public List<Administrador> findByNome(String nome){
         if(nome ==null){
             return null;
         }
-        return (PanacheQuery<Administrador>) find("UPPER(nome) LIKE ?1 ", "%"+nome.toUpperCase() + "%").list();
+        return (List<Administrador>) find("UPPER(nome) LIKE ?1 ", "%"+nome.toUpperCase() + "%").list();
     }
     /* 
     public List<Administrador> findByNome(String nome) {

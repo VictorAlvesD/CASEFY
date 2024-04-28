@@ -1,5 +1,6 @@
 package com.casefy.service.Administrador;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -91,9 +92,12 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
-    public List<AdministradorResponseDTO> findByAll(int pag, int pageSize) {
-        List<Administrador> list = repository.findAll().page(pag, pageSize).list();
-
+    public List<AdministradorResponseDTO> findByAll(int pag, int pageSize, String nome) {
+        List<Administrador> list = new ArrayList();
+        list = repository.findAll().page(pag, pageSize).list();
+        if(nome != null){
+            list = list.stream().filter(a -> a.getNome().contains(nome)).collect(Collectors.toList());
+        }
         return list.stream().map(e -> AdministradorResponseDTO.valueOf(e)).collect(Collectors.toList());
     }
 

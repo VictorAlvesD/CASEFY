@@ -20,7 +20,7 @@ public interface AdministradorService {
 
     public AdministradorResponseDTO findByMatricula(Integer matricula);
 
-    public List<AdministradorResponseDTO> findByAll(int page, int PageSize);
+    public List<AdministradorResponseDTO> findByAll(int page, int PageSize, String nome);
 
     public long count();
 
