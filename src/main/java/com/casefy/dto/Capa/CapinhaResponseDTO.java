@@ -9,7 +9,8 @@ public record CapinhaResponseDTO(
         String nome,
         String descricao,
         ModeloResponseDTO modelo,
-        Float valor) {
+        Float valor,
+        String imagem) {
 
     static public CapinhaResponseDTO valueOf(Capinha capinha) {
         return new CapinhaResponseDTO(
@@ -17,6 +18,7 @@ public record CapinhaResponseDTO(
                 capinha.getNome(),
                 capinha.getDescricao(),
                 ModeloResponseDTO.valueOf(capinha.getModelo()),
-                capinha.getValor());
+                capinha.getValor()
+                , capinha.getNomeImagem());
     }
 }
