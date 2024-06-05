@@ -17,5 +17,7 @@ public interface CapinhaService {
 
     public List<CapinhaResponseDTO> findByAll();
 
+    List<CapinhaResponseDTO> getAllPaginacao(int page, int pageSize);
+
     public CapinhaResponseDTO updateNomeImagem(Long id, String nomeImagem) ;
 }

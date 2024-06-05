@@ -1,6 +1,7 @@
 package com.casefy.service.Capa;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.casefy.dto.Capa.*;
 import com.casefy.model.Capinha;
@@ -92,4 +93,14 @@ public class CapinhaServiceImpl implements CapinhaService {
         Capinha capinha = capinhaRepository.findById(id);
         capinha.setNomeImagem(nomeImagem);
         return CapinhaResponseDTO.valueOf(capinha);}
+
+    @Override
+    public List<CapinhaResponseDTO> getAllPaginacao(int page, int pageSize) {
+        List<Capinha> list = capinhaRepository
+                                .findAll()
+                                .page(page, pageSize)
+                                .list();
+        
+        return list.stream().map(e -> CapinhaResponseDTO.valueOf(e)).collect(Collectors.toList());
+    }
 }

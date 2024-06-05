@@ -29,6 +29,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 
 @Path("/capinhas")
@@ -110,7 +111,7 @@ public class CapinhaResource {
     public Response findById(@PathParam("id") Long id) {
         try {
             CapinhaResponseDTO a = service.findById(id);
-            LOG.info("Buscando um Capinha por ID.");
+            LOG.info("Buscando um Capinha por ID:" + id);
             LOG.debug("Debug de busca de ID de Capinha.");
             return Response.ok(a).build();
         } catch (EntityNotFoundException e) {
@@ -135,17 +136,24 @@ public class CapinhaResource {
 
     // Imagens:
 
-    @PATCH
-    @Path("/upload/imagem/{id}")
-    //@RolesAllowed({ "Admin"})
+     @PATCH
+    @Path("/image/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response salvarImagem(@MultipartForm CapinhaImageForm form, @PathParam("id") Long id) throws IOException {
-        String nomeImagem;
-        nomeImagem = fileService.salvar(form.getNomeImagem(), form.getImagem());
-        CapinhaResponseDTO imagemCAPA = service.findById(id);
-        imagemCAPA = service.updateNomeImagem(imagemCAPA.id(), nomeImagem);
+    public Response salvarImagem(@MultipartForm CapinhaImageForm form) {
+        LOG.info("nome imagem: "+form.getNomeImagem());
+        System.out.println("nome imagem: "+form.getNomeImagem());
+        
+        fileService.salvar(form.getId(), form.getNomeImagem(), form.getImagem());
+        return Response.noContent().build();
+    }
 
-        return Response.ok(imagemCAPA).build();
-
+    @GET
+    @Path("/image/download/{nomeImagem}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response download(@PathParam("nomeImagem") String nomeImagem) {
+        System.out.println(nomeImagem);
+        ResponseBuilder response = Response.ok(fileService.download(nomeImagem));
+        response.header("Content-Disposition", "attachment;filename=" + nomeImagem);
+        return response.build();
     }
 }

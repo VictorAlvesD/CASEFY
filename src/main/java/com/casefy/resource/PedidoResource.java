@@ -41,7 +41,6 @@ public class PedidoResource {
     private static final Logger LOG = Logger.getLogger(PagamentoResource.class);
 
     @POST
-    @RolesAllowed({"Cliente" })
     public Response insert(PedidoDTO dto) {
 
         LOG.debug("Debug de inserção de Pedido.");
@@ -77,7 +76,6 @@ public class PedidoResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Pagamento.");
         LOG.debug("Debug de busca de lista de Pagamento.");
