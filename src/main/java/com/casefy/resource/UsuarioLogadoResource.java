@@ -14,6 +14,7 @@ import com.casefy.service.Cliente.ClienteService;
 import com.casefy.service.Pedido.PedidoService;
 import com.casefy.service.Usuario.UsuarioService;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;

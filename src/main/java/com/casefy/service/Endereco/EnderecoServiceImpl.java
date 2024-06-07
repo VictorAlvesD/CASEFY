@@ -33,14 +33,14 @@ public class EnderecoServiceImpl implements EnderecoService {
         novoEndereco.setNumero(dto.numero());
         novoEndereco.setComplemento(dto.complemento());
 
-        Cidade cidadeExistente = cidaderepository.findByNomeAndEstado(dto.cidade().getNome(), dto.cidade().getEstado().getNome());
+        Cidade cidadeExistente = cidaderepository.findById(dto.cidade());
         if (cidadeExistente == null) {
             throw new EntityNotFoundException("Cidade não existe ");
         }
 
         Cidade cidade = new Cidade();
         cidade.setNome(dto.cidade().getNome());
-        cidade.setEstado(dto.cidade().getEstado());
+        cidade.setEstado(dto.cidade()).getEstado();
         
         novoEndereco.setCidade(cidade);
 
