@@ -2,11 +2,14 @@ package com.casefy.service.Usuario;
 
 import java.util.List;
 
+import org.jboss.logging.Logger;
+
 import com.casefy.dto.Usuario.*;
 import com.casefy.model.Perfil;
 import com.casefy.model.Usuario;
 import com.casefy.repository.PedidoRepository;
 import com.casefy.repository.UsuarioRepository;
+import com.casefy.resource.ClienteResource;
 import com.casefy.validation.ValidationException;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -16,6 +19,8 @@ import jakarta.validation.Valid;
 
 @ApplicationScoped
 public class UsuarioServiceImpl implements UsuarioService {
+
+    private static final Logger LOG = Logger.getLogger(ClienteResource.class);
 
     @Inject
     UsuarioRepository repository;
@@ -81,7 +86,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponseDTO findByLoginAndSenha(String login, String senha) {
-        Usuario usuario = repository.findByLoginAndSenha(login, senha);
+        LOG.info("entrou no service login/senha %login ");
+        Usuario usuario = repository.findByLoginAndSenha(login, senha).firstResult();
+        LOG.info(usuario);
         if (usuario == null)
             throw new ValidationException("login", "Login ou senha inválido");
 
@@ -92,7 +99,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioResponseDTO findByLogin(String login) {
         Usuario usuario = repository.findByLogin(login);
         if (usuario == null)
-            throw new ValidationException("login", "Login inválido");
+            throw new ValidationException("login", "Login");
 
         return UsuarioResponseDTO.valueOf(usuario);
     }

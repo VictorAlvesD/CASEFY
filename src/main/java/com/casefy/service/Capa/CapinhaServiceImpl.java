@@ -23,7 +23,6 @@ public class CapinhaServiceImpl implements CapinhaService {
     @Inject
     ModeloRepository modeloRepository;
 
-
     @Override
     @Transactional
     public CapinhaResponseDTO insert(CapinhaDTO dto) {
@@ -92,15 +91,24 @@ public class CapinhaServiceImpl implements CapinhaService {
     public CapinhaResponseDTO updateNomeImagem(Long id, String nomeImagem) {
         Capinha capinha = capinhaRepository.findById(id);
         capinha.setNomeImagem(nomeImagem);
-        return CapinhaResponseDTO.valueOf(capinha);}
+        return CapinhaResponseDTO.valueOf(capinha);
+    }
 
     @Override
     public List<CapinhaResponseDTO> getAllPaginacao(int page, int pageSize) {
         List<Capinha> list = capinhaRepository
-                                .findAll()
-                                .page(page, pageSize)
-                                .list();
-        
+                .findAll()
+                .page(page, pageSize)
+                .list();
+
         return list.stream().map(e -> CapinhaResponseDTO.valueOf(e)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CapinhaResponseDTO> findByMarca(String nome) {
+        List<Capinha> capinhas = capinhaRepository.findByMarca(nome);
+        return capinhas.stream()
+                .map(CapinhaResponseDTO::valueOf)
+                .collect(Collectors.toList());
     }
 }

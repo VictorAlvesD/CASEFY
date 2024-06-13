@@ -11,4 +11,7 @@ public class CapinhaRepository implements PanacheRepository<Capinha>{
     public List<Capinha> findByNome(String nome) {
         return find("UPPER(nome) LIKE UPPER(?1) ", "%"+nome+"%").list();
     }
+    public List<Capinha> findByMarca(String marca) {
+        return find("modelo.marca.nome = ?1", marca).list();
+    }
 }

@@ -32,7 +32,6 @@ public class UsuarioResource {
     private static final Logger LOG = Logger.getLogger(ClienteResource.class);
 
     @POST
-    @RolesAllowed({ "Admin" })
     public Response insert(@Valid UsuarioDTO dto) {
 
         LOG.debug("Debug de inserção de usuarios.");
@@ -82,7 +81,6 @@ public class UsuarioResource {
     }
 
     @GET
-    @RolesAllowed({ "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os usuarios.");
         LOG.debug("Debug de busca de lista de usuarios.");

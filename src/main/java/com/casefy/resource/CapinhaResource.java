@@ -134,6 +134,18 @@ public class CapinhaResource {
         }
     }
 
+    @GET
+    @Path("/search/{marca}")
+    public Response findByMarca(@PathParam("marca") String marca) {
+        try {
+            LOG.info("Buscando capinhas pela marca.");
+            return Response.ok(service.findByMarca(marca)).build();
+        } catch (EntityNotFoundException e) {
+            LOG.error("Erro ao buscar pela marca das capinhas.");
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+    }
+
     // Imagens:
 
      @PATCH
