@@ -2,13 +2,10 @@ package com.casefy;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import jakarta.inject.Inject;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.casefy.dto.Login.LoginDTO;
 import com.casefy.dto.Pix.*;
 import com.casefy.service.Pix.PixService;
 
@@ -23,27 +20,10 @@ public class PixResourceTest {
     @Inject
     PixService administradorService;
 
-    private String token;
-
-    @BeforeEach
-    public void setUp() {
-        var auth = new LoginDTO("victor@unitins.br", "123");
-
-        Response response = (Response) given()
-                .contentType("application/json")
-                .body(auth)
-                .when().post("/auth")
-                .then()
-                .statusCode(200)
-                .extract().response();
-
-        token = response.header("Authorization");
-    }
 
     @Test
     public void testFindAll() {
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/pix")
                 .then()
                 .statusCode(200);
@@ -55,7 +35,6 @@ public class PixResourceTest {
                 "63984398131");
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoPix)
                 .when().post("/pix")
@@ -79,7 +58,6 @@ public class PixResourceTest {
                 "888.511.988-06");
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoUpdate)
                 .when().put("/pix/" + id)
@@ -100,14 +78,12 @@ public class PixResourceTest {
         Long idPix = administradorInserido.id();
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when()
                 .delete("/pix/" + idPix)
                 .then()
                 .statusCode(204);
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when()
                 .get("/pix/" + idPix)
                 .then()
@@ -124,7 +100,6 @@ public class PixResourceTest {
         Long id = usuarioTest.id();
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/pix/{id}", id)
                 .then()
                 .statusCode(200)
@@ -136,7 +111,6 @@ public class PixResourceTest {
         Long idNaoExistente = 9999L;
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/pix/{id}", idNaoExistente)
                 .then()
                 .statusCode(404);
@@ -147,7 +121,6 @@ public class PixResourceTest {
         String chaveExistente = "9998563254";
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("pix/search/{chave}", chaveExistente)
                 .then()
                 .statusCode(200);

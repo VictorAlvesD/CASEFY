@@ -52,13 +52,12 @@ public class UsuarioLogadoResource {
     private static final Logger LOG = Logger.getLogger(TelefoneResource.class);
 
     @GET
-    @RolesAllowed({ "Cliente", "Admin" })
     public Response getUsuario() {
         // obtendo o login pelo token jwt
         String login = jwt.getSubject();
         try {
             LOG.info("obtendo o login pelo token jwt");
-            LOG.info("Retornando login");
+            LOG.info("Retornando login usuário logado"+login);
             return Response.ok(usuarioService.findByLogin(login)).build();
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST)

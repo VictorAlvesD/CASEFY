@@ -26,27 +26,10 @@ public class BoletoBancarioResourceTest {
     @Inject
     BoletoBancarioService administradorService;
 
-    private String token;
-
-    @BeforeEach
-    public void setUp() {
-        var auth = new LoginDTO("victor@unitins.br", "123");
-
-        Response response = (Response) given()
-                .contentType("application/json")
-                .body(auth)
-                .when().post("/auth")
-                .then()
-                .statusCode(200)
-                .extract().response();
-
-        token = response.header("Authorization");
-    }
 
     @Test
     public void testFindAll() {
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/boletosBancarios")
                 .then()
                 .statusCode(200);
@@ -63,7 +46,6 @@ public class BoletoBancarioResourceTest {
                 dataVencimento);
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoBoletoBancario)
                 .when().post("/boletosBancarios")
@@ -93,7 +75,6 @@ public class BoletoBancarioResourceTest {
                 dataVencimento);
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoUpdate)
                 .when().put("/boletosBancarios/" + id)
@@ -118,14 +99,12 @@ public class BoletoBancarioResourceTest {
         Long idBoletoBancario = administradorInserido.id();
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when()
                 .delete("/boletosBancarios/" + idBoletoBancario)
                 .then()
                 .statusCode(204); // O código 204 indica que a remoção foi bem-sucedida
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when()
                 .get("/boletosBancarios/" + idBoletoBancario)
                 .then()
@@ -146,7 +125,6 @@ public class BoletoBancarioResourceTest {
         Long id = usuarioTest.id();
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/boletosBancarios/{id}", id)
                 .then()
                 .statusCode(200)
@@ -158,7 +136,6 @@ public class BoletoBancarioResourceTest {
         Long idNaoExistente = 9999L;
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/boletosBancarios/{id}", idNaoExistente)
                 .then()
                 .statusCode(404);

@@ -9,7 +9,9 @@ import com.casefy.dto.Administrador.AdministradorResponseDTO;
 import com.casefy.model.Administrador;
 import com.casefy.model.NivelAcesso;
 import com.casefy.model.Perfil;
+import com.casefy.model.Usuario;
 import com.casefy.repository.AdministradorRepository;
+import com.casefy.repository.UsuarioRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -22,6 +24,9 @@ public class AdministradorServiceImpl implements AdministradorService {
 
     @Inject
     AdministradorRepository repository;
+
+    @Inject
+    UsuarioRepository usuarioRepository;
 
     @Override
     @Transactional
@@ -36,6 +41,13 @@ public class AdministradorServiceImpl implements AdministradorService {
         novoAdministrador.setNivelAcesso(NivelAcesso.valueOf(dto.idNivelAcesso()));
 
         repository.persist(novoAdministrador);
+
+        Usuario usuario = new Usuario();
+        usuario.setLogin(dto.email());
+        usuario.setSenha(dto.senha());
+
+        usuarioRepository.persist(usuario);
+
 
         return AdministradorResponseDTO.valueOf(novoAdministrador);
     }

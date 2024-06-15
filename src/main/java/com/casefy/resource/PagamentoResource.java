@@ -37,7 +37,6 @@ public class PagamentoResource {
     JsonWebToken jwt;
 
     @POST
-    @RolesAllowed({ "Cliente" })
     public Response insert(PagamentoDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Pagamento.");
         try {
@@ -65,7 +64,6 @@ public class PagamentoResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response update(PagamentoDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Pagamento");
@@ -82,7 +80,6 @@ public class PagamentoResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Pagamento");
@@ -97,7 +94,6 @@ public class PagamentoResource {
     }
 
     @GET
-    @RolesAllowed({ "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Pagamento.");
         LOG.debug("Debug de busca de lista de Pagamento.");
@@ -106,7 +102,6 @@ public class PagamentoResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             PagamentoResponseDTO a = service.findById(id);
@@ -121,7 +116,6 @@ public class PagamentoResource {
 
     @GET
     @Path("/search/tipoPagamento/{tipo}")
-    @RolesAllowed({ "Admin" })
     public Response findByNome(@PathParam("tipo") String tipo) {
         try {
             LOG.info("Buscando Pagamento pelo tipo.");

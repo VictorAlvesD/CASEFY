@@ -26,27 +26,10 @@ public class CartaoCreditoResourceTest {
     @Inject
     CartaoCreditoService administradorService;
 
-    private String token;
-
-    @BeforeEach
-    public void setUp() {
-        var auth = new LoginDTO("victor@unitins.br", "123");
-
-        Response response = (Response) given()
-                .contentType("application/json")
-                .body(auth)
-                .when().post("/auth")
-                .then()
-                .statusCode(200)
-                .extract().response();
-
-        token = response.header("Authorization");
-    }
 
     @Test
     public void testFindAll() {
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/cartaoCredito")
                 .then()
                 .statusCode(200);
@@ -64,7 +47,6 @@ public class CartaoCreditoResourceTest {
                 1);
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoCartaoCredito)
                 .when().post("/cartaoCredito")
@@ -98,7 +80,6 @@ public class CartaoCreditoResourceTest {
                 3);
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .body(dtoUpdate)
                 .when().put("/cartaoCredito/" + id)
@@ -126,13 +107,11 @@ public class CartaoCreditoResourceTest {
         Long idCartaoCredito = administradorInserido.id();
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when()
                 .delete("/cartaoCredito/" + idCartaoCredito)
                 .then()
                 .statusCode(204);
         given()
-                .header("Authorization", "Bearer " + token)
                 .when()
                 .get("/cartaoCredito/" + idCartaoCredito)
                 .then()
@@ -154,7 +133,6 @@ public class CartaoCreditoResourceTest {
         Long id = usuarioTest.id();
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/cartaoCredito/{id}", id)
                 .then()
                 .statusCode(200)
@@ -166,7 +144,6 @@ public class CartaoCreditoResourceTest {
         Long idNaoExistente = 9999L;
 
         given()
-                .header("Authorization", "Bearer " + token)
                 .when().get("/cartaoCredito/{id}", idNaoExistente)
                 .then()
                 .statusCode(404);

@@ -37,7 +37,7 @@ public class AuthResource {
         String hashSenha = hashService.getHashSenha(dto.senha());
         LOG.info("Hash da senha gerado.");
         LOG.info(hashSenha);
-        UsuarioResponseDTO result = service.findByLoginAndSenha(dto.login(), dto.senha());
+        UsuarioResponseDTO result = service.findByLoginAndSenha(dto.login(), hashSenha);
         if (result != null)
             LOG.info("Login e senha corretos.");
         else

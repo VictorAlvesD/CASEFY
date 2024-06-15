@@ -10,6 +10,7 @@ import com.casefy.model.Usuario;
 import com.casefy.repository.PedidoRepository;
 import com.casefy.repository.UsuarioRepository;
 import com.casefy.resource.ClienteResource;
+import com.casefy.service.Hash.HashService;
 import com.casefy.validation.ValidationException;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -28,6 +29,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Inject
     PedidoRepository pedidoRepository;
 
+    @Inject
+    HashService hashService;
+
     @Override
     @Transactional
     public UsuarioResponseDTO insert(@Valid UsuarioDTO dto) {
@@ -39,7 +43,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNome(dto.nome());
         novoUsuario.setLogin(dto.login());
-        novoUsuario.setSenha(dto.senha());
+        novoUsuario.setSenha(hashService.getHashSenha(dto.senha()));
         novoUsuario.setPerfil(Perfil.valueOf(dto.idPerfil()));
 
         repository.persist(novoUsuario);

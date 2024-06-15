@@ -34,7 +34,6 @@ public class BoletoBancarioResource {
     private static final Logger LOG = Logger.getLogger(BoletoBancarioResource.class);
 
     @POST
-    @RolesAllowed({ "Admin" })
     public Response insert(BoletoBancarioDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Boleto Bancario.");
         try {
@@ -51,7 +50,6 @@ public class BoletoBancarioResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin"})
     public Response update(BoletoBancarioDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Boleto Bancario");
@@ -67,7 +65,6 @@ public class BoletoBancarioResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Boleto Bancario");
@@ -81,7 +78,6 @@ public class BoletoBancarioResource {
     }
 
     @GET
-    @RolesAllowed({ "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Boleto Bancario.");
         LOG.debug("Debug de busca de lista de Boleto Bancario.");
@@ -90,7 +86,6 @@ public class BoletoBancarioResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             BoletoBancarioResponseDTO a = service.findById(id);
@@ -105,7 +100,6 @@ public class BoletoBancarioResource {
 
     @GET
     @Path("/search/numeroDoBoleto/{numeroDoBoleto}")
-    @RolesAllowed({ "Admin" })
     public Response findByNome(@PathParam("numeroDoBoleto") String nome) {
         try {
             LOG.info("Buscando um Boleto Bancario numero Do Boleto.");

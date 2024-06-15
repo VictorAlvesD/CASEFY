@@ -33,7 +33,7 @@ public class CartaoCreditoResource {
     private static final Logger LOG = Logger.getLogger(CartaoCreditoResource.class);
 
     @POST
-    @RolesAllowed({ "Admin" })
+    @Transactional
     public Response insert(CartaoCreditoDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Cartao Credito.");
         try {
@@ -51,7 +51,6 @@ public class CartaoCreditoResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response update(CartaoCreditoDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Cartao Credito");
@@ -68,7 +67,6 @@ public class CartaoCreditoResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Cartao Credito");
@@ -83,7 +81,6 @@ public class CartaoCreditoResource {
     }
 
     @GET
-    @RolesAllowed({ "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Cartao Credito.");
         LOG.debug("Debug de busca de lista de Cartao Credito.");
@@ -92,7 +89,6 @@ public class CartaoCreditoResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({ "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             CartaoCreditoResponseDTO a = service.findById(id);
@@ -107,7 +103,6 @@ public class CartaoCreditoResource {
 
     @GET
     @Path("/search/bandeira/{bandeira}")
-    @RolesAllowed({ "Admin" })
     public Response findByNome(@PathParam("bandeira") String nome) {
         try {
             LOG.info("Buscando Cartao Credito pela bandeira.");

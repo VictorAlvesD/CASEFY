@@ -35,7 +35,6 @@ public class PixResource {
     private static final Logger LOG = Logger.getLogger(PixResource.class);
 
     @POST
-    @RolesAllowed({   "Admin" })
     public Response insert(PixDTO dto) throws Exception {
         LOG.debug("Debug de inserção de Pix.");
         try {
@@ -53,7 +52,6 @@ public class PixResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response update(PixDTO dto, @PathParam("id") Long id) {
         try {
             LOG.info("Atualizando Pix");
@@ -70,7 +68,6 @@ public class PixResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando o Pix");
@@ -85,7 +82,6 @@ public class PixResource {
     }
 
     @GET
-    @RolesAllowed({   "Admin" })
     public Response findAll() {
         LOG.info("Buscando todos os Pix.");
         LOG.debug("Debug de busca de lista de Pix.");
@@ -94,7 +90,6 @@ public class PixResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({   "Admin" })
     public Response findById(@PathParam("id") Long id) {
         try {
             PixResponseDTO a = service.findById(id);
@@ -109,7 +104,6 @@ public class PixResource {
 
     @GET
     @Path("/search/{chavePix}")
-    @RolesAllowed({   "Admin" })
     public Response findByNome(@PathParam("chavePix") String chavePix) {
         try {
             LOG.info("Buscando Pix pela chave Pix.");
