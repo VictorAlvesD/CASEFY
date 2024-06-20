@@ -101,16 +101,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponseDTO findByLogin(String login) {
-        Usuario usuario = repository.findByLogin(login);
-        if (usuario == null)
-            throw new ValidationException("login", "Login");
-
+        Usuario usuario = repository.findByLogin(login).firstResult();
+        if (usuario == null) {
+            LOG.warn("Usuário não encontrado para o login: " + login);
+            throw new ValidationException("login", "Falha ao obter o Login");
+        }
+    
         return UsuarioResponseDTO.valueOf(usuario);
     }
 
     @Override
     public UsuarioResponseDTO updateNome(String login, String nome) {
-        Usuario usuario = repository.findByLogin(login);
+        Usuario usuario = repository.findByLogin(login).firstResult();
         usuario.setNome(nome);
         repository.persist(usuario);
         return UsuarioResponseDTO.valueOf(usuario);
@@ -118,7 +120,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponseDTO updateSenha(String login, String senha) {
-        Usuario usuario = repository.findByLogin(login);
+        Usuario usuario = repository.findByLogin(login).firstResult();
         usuario.setSenha(senha);
         repository.persist(usuario);
         return UsuarioResponseDTO.valueOf(usuario);
@@ -126,7 +128,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponseDTO updateCPF(String login, String cpf) {
-        Usuario usuario = repository.findByLogin(login);
+        Usuario usuario = repository.findByLogin(login).firstResult();
         repository.persist(usuario);
         return UsuarioResponseDTO.valueOf(usuario);
     }

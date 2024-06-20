@@ -52,19 +52,30 @@ public class UsuarioLogadoResource {
     private static final Logger LOG = Logger.getLogger(TelefoneResource.class);
 
     @GET
+    @RolesAllowed({ "Cliente", "Admin" })
     public Response getUsuario() {
         // obtendo o login pelo token jwt
-        String login = jwt.getSubject();
-        try {
-            LOG.info("obtendo o login pelo token jwt");
-            LOG.info("Retornando login usuário logado"+login);
-            return Response.ok(usuarioService.findByLogin(login)).build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Erro ao retornar informações do usuário logado: " + e.getMessage())
-                    .build();
-            
-        }
+    String login;
+    try {
+        login = jwt.getSubject();
+    } catch (Exception e) {
+        LOG.error("Erro ao obter login do token JWT", e);
+        return Response.status(Response.Status.UNAUTHORIZED)
+                .entity("Erro ao autenticar o token JWT: " + e.getMessage())
+                .build();
+    }
+    
+    try {
+        login = jwt.getSubject();
+        LOG.info("obtendo o login pelo token jwt");
+        LOG.info("Retornando login usuário logado: " + login);
+        return Response.ok(usuarioService.findByLogin(login)).build();
+    } catch (Exception e) {
+        LOG.error("Erro ao retornar informações do usuário logado", e);
+        return Response.status(Response.Status.BAD_REQUEST)
+                .entity("Erro ao retornar informações do usuário logado: " + e.getMessage())
+                .build();
+    }
     }
 
     @PATCH
